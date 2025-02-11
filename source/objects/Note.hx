@@ -165,7 +165,7 @@ class Note extends FlxSprite
 		return value;
 	}
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
+	public function new(strumTime:Float, noteData:Int, mustPress:Bool, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?createdFrom:Dynamic = null)
 	{
 		super();
 
@@ -177,6 +177,7 @@ class Note extends FlxSprite
 		if (prevNote == null)
 			prevNote = this;
 
+		this.mustPress = mustPress;
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 		this.inEditor = inEditor;
