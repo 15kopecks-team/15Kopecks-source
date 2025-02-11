@@ -1,0 +1,86 @@
+{
+	"storyName": "15kopeeck",
+	"difficulties": "Normal",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"weekCharacters": [
+		"",
+		"bf",
+		""
+	],
+	"songs": [
+		[
+			"pig-ful",
+			"pig",
+			[
+				86,
+				113,
+				253
+			]
+		],
+		[
+			"st4r-fever",
+			"7TIC",
+			[
+				235,
+				53,
+				15
+			]
+		],
+		[
+			"tuberculosis",
+			"27DUM",
+			[
+				206,
+				173,
+				115
+			]
+		],
+		[
+			"daemae",
+			"mom",
+			[
+				255,
+				213,
+				0
+			]
+		],
+		[
+			"the-girl-from-apartment-42",
+			"bf",
+			[
+				255,
+				75,
+				135
+			]
+		],
+		[
+			"bing-chillin",
+			"dad",
+			[
+				246,
+				53,
+				15
+			]
+		],
+		[
+			"beer-n-cider",
+			"leha15",
+			[
+				160,
+				240,
+				73
+			]
+		]
+	],
+	"hideStoryMode": true,
+	"weekName": "15kopeeck",
+	"hiddenUntilUnlocked": false
+}

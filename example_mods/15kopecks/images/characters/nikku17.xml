@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="nikku17.png">
+	<!-- Created with Adobe Animate version 21.0.0.35450 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="don pose0000" x="0" y="0" width="425" height="894" frameX="0" frameY="-19" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0001" x="425" y="0" width="425" height="894" frameX="0" frameY="-19" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0002" x="850" y="0" width="402" height="913" frameX="-1" frameY="0" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0003" x="1252" y="0" width="402" height="913" frameX="-1" frameY="0" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0004" x="1654" y="0" width="402" height="913" frameX="-1" frameY="0" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0005" x="2056" y="0" width="402" height="913" frameX="-1" frameY="0" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0006" x="2458" y="0" width="402" height="913" frameX="-1" frameY="0" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="don pose0007" x="2860" y="0" width="402" height="913" frameX="-1" frameY="0" frameWidth="425" frameHeight="913"/>
+	<SubTexture name="idle pose0000" x="3262" y="0" width="389" height="990" frameX="-3" frameY="-11" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0001" x="3651" y="0" width="389" height="990" frameX="-3" frameY="-11" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0002" x="4040" y="0" width="384" height="989" frameX="-9" frameY="-12" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0003" x="4424" y="0" width="384" height="989" frameX="-9" frameY="-12" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0004" x="4808" y="0" width="388" height="997" frameX="-5" frameY="-4" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0005" x="5196" y="0" width="388" height="997" frameX="-5" frameY="-4" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0006" x="5584" y="0" width="390" height="1000" frameX="-1" frameY="-1" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0007" x="5974" y="0" width="390" height="1000" frameX="-1" frameY="-1" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0008" x="6364" y="0" width="391" height="1001" frameX="0" frameY="0" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0009" x="6755" y="0" width="391" height="1001" frameX="0" frameY="0" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0010" x="7146" y="0" width="391" height="1001" frameX="0" frameY="0" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0011" x="7537" y="0" width="391" height="1001" frameX="0" frameY="0" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0012" x="0" y="1001" width="391" height="1001" frameX="0" frameY="0" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="idle pose0013" x="391" y="1001" width="391" height="1001" frameX="0" frameY="0" frameWidth="393" frameHeight="1001"/>
+	<SubTexture name="lef pose0000" x="782" y="1001" width="457" height="995" frameX="0" frameY="-11" frameWidth="460" frameHeight="1006"/>
+	<SubTexture name="lef pose0001" x="1239" y="1001" width="457" height="995" frameX="0" frameY="-11" frameWidth="460" frameHeight="1006"/>
+	<SubTexture name="lef pose0002" x="1696" y="1001" width="436" height="1006" frameX="-24" frameY="0" frameWidth="460" frameHeight="1006"/>
+	<SubTexture name="lef pose0003" x="2132" y="1001" width="436" height="1006" frameX="-24" frameY="0" frameWidth="460" frameHeight="1006"/>
+	<SubTexture name="lef pose0004" x="2568" y="1001" width="436" height="1006" frameX="-24" frameY="0" frameWidth="460" frameHeight="1006"/>
+	<SubTexture name="right pose0000" x="3004" y="1001" width="505" height="1004" frameX="-9" frameY="0" frameWidth="514" frameHeight="1004"/>
+	<SubTexture name="right pose0001" x="3509" y="1001" width="505" height="1004" frameX="-9" frameY="0" frameWidth="514" frameHeight="1004"/>
+	<SubTexture name="right pose0002" x="4014" y="1001" width="472" height="1000" frameX="0" frameY="-4" frameWidth="514" frameHeight="1004"/>
+	<SubTexture name="right pose0003" x="4486" y="1001" width="472" height="1000" frameX="0" frameY="-4" frameWidth="514" frameHeight="1004"/>
+	<SubTexture name="right pose0004" x="4958" y="1001" width="472" height="1000" frameX="0" frameY="-4" frameWidth="514" frameHeight="1004"/>
+	<SubTexture name="up pose0000" x="5430" y="1001" width="373" height="1031" frameX="-6" frameY="0" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0001" x="5803" y="1001" width="373" height="1031" frameX="-6" frameY="0" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0002" x="6176" y="1001" width="387" height="1016" frameX="0" frameY="-15" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0003" x="6563" y="1001" width="387" height="1016" frameX="0" frameY="-15" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0004" x="6950" y="1001" width="387" height="1016" frameX="0" frameY="-15" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0005" x="7337" y="1001" width="387" height="1016" frameX="0" frameY="-15" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0006" x="7724" y="1001" width="387" height="1016" frameX="0" frameY="-15" frameWidth="387" frameHeight="1031"/>
+	<SubTexture name="up pose0007" x="0" y="2032" width="387" height="1016" frameX="0" frameY="-15" frameWidth="387" frameHeight="1031"/>
+</TextureAtlas>

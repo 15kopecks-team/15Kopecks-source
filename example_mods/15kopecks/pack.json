@@ -1,0 +1,7 @@
+{
+	"name": "15kopecks",
+	"description": "yo bro keep yourself",
+	"restart": false,
+	"color": [100, 100, 200],
+	"runsGlobally": true
+}

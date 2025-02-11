@@ -1,0 +1,80 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				-6,
+				210
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "darn idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				33,
+				135
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "darn down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				46,
+				249
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "darn up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				104,
+				197
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "darn left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				-8,
+				188
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "darn right",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/darnell17",
+	"position": [
+		-100,
+		400
+	],
+	"healthicon": "darnell",
+	"flip_x": true,
+	"healthbar_colors": [
+		183,
+		91,
+		238
+	],
+	"camera_position": [
+		0,
+		-180
+	],
+	"sing_duration": 6.2,
+	"scale": 1,
+	"_editor_isPlayer": true
+}
