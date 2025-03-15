@@ -32,7 +32,7 @@ class Paths
 			dumpExclusions.push(key);
 	}
 
-	public static var dumpExclusions:Array<String> = ['assets/shared/music/freakyMenu.$SOUND_EXT'];
+	public static var dumpExclusions:Array<String> = ['assets/shared/music/${states.InitState.menuMusic}.$SOUND_EXT'];
 	/// haya I love you for the base cache dump I took to the max
 	public static function clearUnusedMemory() {
 		// clear non local assets in the tracked assets list
@@ -214,6 +214,10 @@ class Paths
 		return inst;
 	}
 
+	inline static public function chart(key:String, ?library:String) {
+		return getPath('songs/$key.json', TEXT, library);
+	}
+
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
 	static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
 	{
@@ -270,7 +274,7 @@ class Paths
 		}
 
 		localTrackedAssets.push(file);
-		if (allowGPU && Main.gpuCache)
+		if (allowGPU && ClientPrefs.data.cacheOnGPU)
 		{
 			var texture:RectangleTexture = FlxG.stage.context3D.createRectangleTexture(bitmap.width, bitmap.height, BGRA, true);
 			texture.uploadFromBitmapData(bitmap);
@@ -469,7 +473,7 @@ class Paths
 
 	#if MODS_ALLOWED
 	inline static public function mods(key:String = '') {
-		return 'mods/' + key;
+		return 'content/' + key;
 	}
 
 	inline static public function modsFont(key:String) {
@@ -478,6 +482,10 @@ class Paths
 
 	inline static public function modsJson(key:String) {
 		return modFolders('data/' + key + '.json');
+	}
+
+	inline static public function modsChart(key:String) {
+		return modFolders('songs/' + key + '.json');
 	}
 
 	inline static public function modsVideo(key:String) {
@@ -531,7 +539,7 @@ class Paths
 			if(FileSystem.exists(fileToCheck))
 				return fileToCheck;
 		}
-		return 'mods/' + key;
+		return 'content/' + key;
 	}
 	#end
 

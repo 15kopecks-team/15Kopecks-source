@@ -176,8 +176,8 @@ class Note extends FlxSprite
 
 		if (prevNote == null)
 			prevNote = this;
-
 		this.mustPress = mustPress;
+
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 		this.inEditor = inEditor;
@@ -267,14 +267,11 @@ class Note extends FlxSprite
 		var skin:String = texture + postfix;
 		if(texture.length < 1) {
 			if(PlayState.SONG != null)
-				if (mustPress){
+				if (mustPress)
 					skin = PlayState.SONG.arrowSkin;
-					trace("player note loaded");
-				}
-				else{
+				else
 					skin = PlayState.SONG.oppArrowSkin;
-					trace("opponent note loaded");
-				}
+	
 					
 			
 			

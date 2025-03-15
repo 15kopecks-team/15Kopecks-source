@@ -188,6 +188,7 @@ class ChartingState extends MusicBeatState
 	var text:String = "";
 	public static var vortex:Bool = false;
 	public var mouseQuant:Bool = false;
+	var bg:FlxSprite;
 	override function create()
 	{
 		if (PlayState.SONG != null)
@@ -222,7 +223,7 @@ class ChartingState extends MusicBeatState
 
 		vortex = FlxG.save.data.chart_vortex;
 		ignoreWarnings = FlxG.save.data.ignoreWarnings;
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set();
 		bg.color = 0xFF673AB7;
@@ -317,7 +318,9 @@ class ChartingState extends MusicBeatState
 			{name: "Data", label: 'Data'},
 		];
 
-		UI_box = new FlxUITabMenu(null, tabs, true);
+		var back:FlxSprite = new FlxSprite(0,0).makeGraphic(300, 400, 0xFF2C2F30);
+
+		UI_box = new FlxUITabMenu(back, tabs, true);
 
 		UI_box.resize(300, 400);
 		UI_box.x = 640 + GRID_SIZE / 2;
@@ -439,9 +442,9 @@ class ChartingState extends MusicBeatState
 		{
 
 			var songName:String = Paths.formatToSongPath(_song.song);
-			var file:String = Paths.json(songName + '/events');
+			var file:String = Paths.chart('$songName/charts/events');
 			#if sys
-			if (#if MODS_ALLOWED FileSystem.exists(Paths.modsJson(songName + '/events')) || #end FileSystem.exists(file))
+			if (#if MODS_ALLOWED FileSystem.exists(Paths.modsChart('$songName/charts/events')) || #end FileSystem.exists(file))
 			#else
 			if (OpenFlAssets.exists(file))
 			#end
@@ -487,11 +490,11 @@ class ChartingState extends MusicBeatState
 		stepperSpeed.name = 'song_speed';
 		blockPressWhileTypingOnStepper.push(stepperSpeed);
 		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('characters/'), Paths.mods(Mods.currentModDirectory + '/characters/'), Paths.getSharedPath('characters/')];
+		var directories:Array<String> = [Paths.mods('data/characters/'), Paths.mods(Mods.currentModDirectory + '/data/characters/'), Paths.getSharedPath('data/characters/')];
 		for(mod in Mods.getGlobalMods())
-			directories.push(Paths.mods(mod + '/characters/'));
+			directories.push(Paths.mods(mod + '/data/characters/'));
 		#else
-		var directories:Array<String> = [Paths.getSharedPath('characters/')];
+		var directories:Array<String> = [Paths.getSharedPath('data/characters/')];
 		#end
 
 		var tempArray:Array<String> = [];
@@ -549,11 +552,11 @@ class ChartingState extends MusicBeatState
 		blockPressWhileScrolling.push(player2DropDown);
 
 		#if MODS_ALLOWED
-		var directories:Array<String> = [Paths.mods('stages/'), Paths.mods(Mods.currentModDirectory + '/stages/'), Paths.getSharedPath('stages/')];
+		var directories:Array<String> = [Paths.mods('data/stages/'), Paths.mods(Mods.currentModDirectory + '/data/stages/'), Paths.getSharedPath('stages/')];
 		for(mod in Mods.getGlobalMods())
-			directories.push(Paths.mods(mod + '/stages/'));
+			directories.push(Paths.mods(mod + '/data/stages/'));
 		#else
-		var directories:Array<String> = [Paths.getSharedPath('stages/')];
+		var directories:Array<String> = [Paths.getSharedPath('data/stages/')];
 		#end
 
 		var stageFile:Array<String> = Mods.mergeAllTextsNamed('data/stageList.txt', Paths.getSharedPath());
@@ -620,7 +623,7 @@ class ChartingState extends MusicBeatState
 
 		UI_box.addGroup(tab_group_song);
 
-		initPsychCamera().follow(camPos, LOCKON, 999);
+		FlxG.camera.follow(camPos, LOCKON, 999);
 	}
 
 	var stepperBeats:FlxUINumericStepper;
@@ -977,10 +980,10 @@ class ChartingState extends MusicBeatState
 		var directories:Array<String> = [];
 
 		#if MODS_ALLOWED
-		directories.push(Paths.mods('custom_events/'));
-		directories.push(Paths.mods(Mods.currentModDirectory + '/custom_events/'));
+		directories.push(Paths.mods('data/events/'));
+		directories.push(Paths.mods(Mods.currentModDirectory + '/data/events/'));
 		for(mod in Mods.getGlobalMods())
-			directories.push(Paths.mods(mod + '/custom_events/'));
+			directories.push(Paths.mods(mod + '/data/events/'));
 		#end
 
 		for (i in 0...directories.length) {
@@ -1361,34 +1364,36 @@ class ChartingState extends MusicBeatState
 		tab_group_data.name = 'Data';
 
 		//
-		gameOverCharacterInputText = new FlxUIInputText(10, 25, 260, _song.gameOverChar != null ? _song.gameOverChar : '', 8);
+		gameOverCharacterInputText = new FlxUIInputText(10, 25, 278, _song.gameOverChar != null ? _song.gameOverChar : '', 8);
 		blockPressWhileTypingOn.push(gameOverCharacterInputText);
 		
-		gameOverSoundInputText = new FlxUIInputText(10, gameOverCharacterInputText.y + 35, 260, _song.gameOverSound != null ? _song.gameOverSound : '', 8);
+		gameOverSoundInputText = new FlxUIInputText(10, gameOverCharacterInputText.y + 35, 278, _song.gameOverSound != null ? _song.gameOverSound : '', 8);
 		blockPressWhileTypingOn.push(gameOverSoundInputText);
 		
-		gameOverLoopInputText = new FlxUIInputText(10, gameOverSoundInputText.y + 35, 260, _song.gameOverLoop != null ? _song.gameOverLoop : '', 8);
+		gameOverLoopInputText = new FlxUIInputText(10, gameOverSoundInputText.y + 35, 278, _song.gameOverLoop != null ? _song.gameOverLoop : '', 8);
 		blockPressWhileTypingOn.push(gameOverLoopInputText);
 		
-		gameOverEndInputText = new FlxUIInputText(10, gameOverLoopInputText.y + 35, 260, _song.gameOverEnd != null ? _song.gameOverEnd : '', 8);
+		gameOverEndInputText = new FlxUIInputText(10, gameOverLoopInputText.y + 35, 278, _song.gameOverEnd != null ? _song.gameOverEnd : '', 8);
 		blockPressWhileTypingOn.push(gameOverEndInputText);
 		
-		oppNoteSkinInputText = new FlxUIInputText(10, 240, 260, _song.oppArrowSkin != null ? _song.oppArrowSkin : '', 8);
-		oppNoteSkinInputText.color = 0xFFFFACAC;
+		oppNoteSkinInputText = new FlxUIInputText(10, gameOverEndInputText.y + 35, 278, _song.oppArrowSkin != null ? _song.oppArrowSkin : '', 8);
+		oppNoteSkinInputText.backgroundColor = 0xFFFFACAC;
 		blockPressWhileTypingOn.push(oppNoteSkinInputText);
 
-		noteSkinInputText = new FlxUIInputText(10, 280, 260, _song.arrowSkin != null ? _song.arrowSkin : '', 8);
-		noteSkinInputText.color = 0xFFACFFAC;
+		noteSkinInputText = new FlxUIInputText(10, oppNoteSkinInputText.y + 35, 278, _song.arrowSkin != null ? _song.arrowSkin : '', 8);
+		noteSkinInputText.backgroundColor = 0xFFACFFAC;
 		blockPressWhileTypingOn.push(noteSkinInputText);
 
-		noteSplashesInputText = new FlxUIInputText(noteSkinInputText.x, noteSkinInputText.y + 35, 260, _song.splashSkin != null ? _song.splashSkin : '', 8);
+		noteSplashesInputText = new FlxUIInputText(noteSkinInputText.x, noteSkinInputText.y + 35, 278, _song.splashSkin != null ? _song.splashSkin : '', 8);
 		blockPressWhileTypingOn.push(noteSplashesInputText);
 
-		var reloadNotesButton:FlxButton = new FlxButton(noteSplashesInputText.x + 30, noteSplashesInputText.y + 25, 'Change Notes', function() {
+		var reloadNotesButton:FlxButton = new FlxButton(10, noteSplashesInputText.y + 25, 'Reload Notes Texture', function() {
 			_song.arrowSkin = noteSkinInputText.text;
 			_song.oppArrowSkin = oppNoteSkinInputText.text;
 			updateGrid();
 		});
+
+		reloadNotesButton.x = noteSplashesInputText.width / 2;
 		//
 		
 		tab_group_data.add(gameOverCharacterInputText);
@@ -1875,7 +1880,7 @@ class ChartingState extends MusicBeatState
 				autosaveSong();
 				PlayState.chartingMode = false;
 				MusicBeatState.switchState(new states.editors.MasterEditorMenu());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
 				FlxG.mouse.visible = false;
 				return;
 			}
@@ -2819,7 +2824,7 @@ class ChartingState extends MusicBeatState
 		var daStrumTime = i[0];
 		var daSus:Dynamic = i[2];
 
-		var note:Note = new Note(daStrumTime, daNoteInfo % 4, null, null, true);
+		var note:Note = new Note(daStrumTime, daNoteInfo % 4, false, null, null, true);
 		if(daSus != null) { //Common note
 			if(!Std.isOfType(i[3], String)) //Convert old note type to new note type format
 			{
@@ -3160,11 +3165,8 @@ class ChartingState extends MusicBeatState
 
 		if ((data != null) && (data.length > 0))
 		{
-			_file = new FileReference();
-			_file.addEventListener(#if desktop Event.SELECT #else Event.COMPLETE #end, onSaveComplete);
-			_file.addEventListener(Event.CANCEL, onSaveCancel);
-			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), Paths.formatToSongPath(_song.song) + ".json");
+			trace(Paths.mods(Mods.currentModDirectory + '/songs/$currentSongName/charts/'+ _song.song + '.json'));
+			File.saveContent(Paths.mods(Mods.currentModDirectory + '/songs/$currentSongName/charts/'+ _song.song + '.json'), data);
 		}
 	}
 

@@ -72,7 +72,7 @@
 
 	<!-- Assets -->
 	<assets path="assets/fonts" />
-	<assets path="static/" rename='' if="windows"/>
+	<!-- <assets path="assets/flixel-ui"/> -->
 	<assets path="assets/shared"        exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"        exclude="*.mp3" unless="web"/>
 	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
@@ -92,7 +92,7 @@
 	<define name="CHECK_FOR_UPDATES" if="desktop officialBuild"/>
 
 	<section if="MODS_ALLOWED">
-		<assets path='example_mods' rename='mods' embed='false'/>
+		<assets path='uwu' rename='content' embed='false'/>
 	</section>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 

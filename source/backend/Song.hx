@@ -102,21 +102,21 @@ class Song
 		var formattedFolder:String = Paths.formatToSongPath(folder);
 		var formattedSong:String = Paths.formatToSongPath(jsonInput);
 		#if MODS_ALLOWED
-		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
+		var moddyFile:String = Paths.modsChart(formattedFolder + '/charts/' + formattedSong);
 		if(FileSystem.exists(moddyFile)) {
 			rawJson = File.getContent(moddyFile).trim();
 		}
 		#end
 
 		if(rawJson == null) {
-			var path:String = Paths.json(formattedFolder + '/' + formattedSong);
+			var path:String = Paths.json(formattedFolder + '/charts/' + formattedSong);
 
 			#if sys
 			if(FileSystem.exists(path))
 				rawJson = File.getContent(path).trim();
 			else
 			#end
-				rawJson = Assets.getText(Paths.json(formattedFolder + '/' + formattedSong)).trim();
+				rawJson = Assets.getText(Paths.chart(formattedFolder + '/charts/' + formattedSong)).trim();
 		}
 
 		while (!rawJson.endsWith("}"))
@@ -140,7 +140,7 @@ class Song
 				daNotes = songData.notes;
 				daSong = songData.song;
 				daBpm = songData.bpm; */
-
+		trace("LOADED SHIT: " + formattedFolder + '/charts/' + formattedSong);
 		var songJson:Dynamic = parseJSONshit(rawJson);
 		if(jsonInput != 'events') StageData.loadDirectory(songJson);
 		onLoadJson(songJson);
@@ -149,6 +149,7 @@ class Song
 
 	public static function parseJSONshit(rawJson:String):SwagSong
 	{
+		
 		return cast Json.parse(rawJson).song;
 	}
 }

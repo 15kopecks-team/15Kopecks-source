@@ -1,0 +1,86 @@
+{
+	"storyName": "15kopeeck",
+	"difficulties": "Normal",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": true,
+	"songs": [
+		[
+			"pig-ful",
+			"pig",
+			[
+				86,
+				113,
+				253
+			]
+		],
+		[
+			"st4r-fever",
+			"7TIC",
+			[
+				235,
+				53,
+				15
+			]
+		],
+		[
+			"tuberculosis",
+			"27DUM",
+			[
+				206,
+				173,
+				115
+			]
+		],
+		[
+			"daemae",
+			"pchelka",
+			[
+				255,
+				213,
+				0
+			]
+		],
+		[
+			"kvartira 42",
+			"nikku",
+			[
+				255,
+				75,
+				135
+			]
+		],
+		[
+			"bing-chillin",
+			"moler",
+			[
+				255,
+				60,
+				60
+			]
+		],
+		[
+			"beer-n-cider",
+			"leha15",
+			[
+				160,
+				240,
+				73
+			]
+		]
+	],
+	"weekCharacters": [
+		"",
+		"bf",
+		""
+	],
+	"hiddenUntilUnlocked": false,
+	"weekName": "15kopeeck"
+}

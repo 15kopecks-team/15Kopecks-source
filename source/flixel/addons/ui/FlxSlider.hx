@@ -189,7 +189,9 @@ class FlxSlider extends FlxSpriteGroup
 
 		if (MinValue == MaxValue)
 		{
+			#if debug
 			FlxG.log.error("FlxSlider: MinValue and MaxValue can't be the same (" + MinValue + ")");
+			#end
 		}
 
 		// Determine the amount of decimals to show
@@ -476,7 +478,9 @@ class FlxSlider extends FlxSpriteGroup
 		}
 		catch (e:Dynamic)
 		{
+			#if debug
 			FlxG.log.error("Could not create FlxSlider - '" + Value + "' is not a valid field of '" + _object + "'");
+			#end
 			varString = null;
 		}
 

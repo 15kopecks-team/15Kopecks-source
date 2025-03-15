@@ -12,6 +12,7 @@ class MasterEditorMenu extends MusicBeatState
 	var options:Array<String> = [
 		'Chart Editor',
 		'Character Editor',
+		'Icon Editor',
 		'Week Editor',
 		'Menu Character Editor',
 		'Dialogue Editor',
@@ -35,8 +36,11 @@ class MasterEditorMenu extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.scrollFactor.set();
+		bg.scale.set(1.5, 1.5);
 		bg.color = 0xFF4CAF50;
 		add(bg);
+
+		
 
 		grpTexts = new FlxTypedGroup<Alphabet>();
 		add(grpTexts);
@@ -51,7 +55,7 @@ class MasterEditorMenu extends MusicBeatState
 		}
 		
 		#if MODS_ALLOWED
-		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 42).makeGraphic(FlxG.width, 42, 0xFF000000);
+		var textBG:FlxSprite = new FlxSprite(0, FlxG.height + 42).makeGraphic(FlxG.width, 42, 0xFF000000);
 		textBG.alpha = 0.6;
 		add(textBG);
 
@@ -73,6 +77,8 @@ class MasterEditorMenu extends MusicBeatState
 
 		FlxG.mouse.visible = false;
 		super.create();
+
+		FlxG.camera.zoom = 0.75;
 	}
 
 	override function update(elapsed:Float)

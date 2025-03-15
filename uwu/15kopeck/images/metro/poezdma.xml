@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="poezdma.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="poezdma0000" x="1" y="1" width="1943" height="337"/>
+	<SubTexture name="poezdma0001" x="1945" y="1" width="1943" height="337"/>
+	<SubTexture name="poezdma0002" x="3889" y="1" width="1943" height="337"/>
+	<SubTexture name="poezdma0003" x="5833" y="1" width="1943" height="337"/>
+	<SubTexture name="poezdma0004" x="1" y="339" width="1943" height="337"/>
+	<SubTexture name="poezdma0005" x="1945" y="339" width="1943" height="337"/>
+	<SubTexture name="poezdma0006" x="3889" y="339" width="1943" height="337"/>
+	<SubTexture name="poezdma0007" x="5833" y="339" width="1943" height="337"/>
+	<SubTexture name="poezdma0008" x="1" y="677" width="1943" height="337"/>
+	<SubTexture name="poezdma0009" x="1945" y="677" width="1943" height="337"/>
+	<SubTexture name="poezdma0010" x="3889" y="677" width="1943" height="337"/>
+	<SubTexture name="poezdma0011" x="5833" y="677" width="1943" height="337"/>
+	<SubTexture name="poezdma0012" x="1" y="1015" width="1943" height="337"/>
+	<SubTexture name="poezdma0013" x="1945" y="1015" width="1943" height="337"/>
+	<SubTexture name="poezdma0014" x="3889" y="1015" width="1943" height="337"/>
+	<SubTexture name="poezdma0015" x="5833" y="1015" width="1943" height="337"/>
+	<SubTexture name="poezdma0016" x="1" y="1353" width="1943" height="337"/>
+	<SubTexture name="poezdma0017" x="1945" y="1353" width="1943" height="337"/>
+	<SubTexture name="poezdma0018" x="3889" y="1353" width="1943" height="337"/>
+	<SubTexture name="poezdma0019" x="5833" y="1353" width="1943" height="337"/>
+	<SubTexture name="poezdma0020" x="1" y="1691" width="1943" height="337"/>
+	<SubTexture name="poezdma0021" x="1945" y="1691" width="1943" height="337"/>
+	<SubTexture name="poezdma0022" x="3889" y="1691" width="1943" height="337"/>
+	<SubTexture name="poezdma0023" x="5833" y="1691" width="1943" height="337"/>
+	<SubTexture name="poezdma0024" x="1" y="2029" width="1943" height="337"/>
+	<SubTexture name="poezdma0025" x="1945" y="2029" width="1943" height="337"/>
+	<SubTexture name="poezdma0026" x="3889" y="2029" width="1943" height="337"/>
+	<SubTexture name="poezdma0027" x="5833" y="2029" width="1943" height="337"/>
+	<SubTexture name="poezdma0028" x="1" y="2367" width="1943" height="337"/>
+	<SubTexture name="poezdma0029" x="1945" y="2367" width="1943" height="337"/>
+	<SubTexture name="poezdma0030" x="3889" y="2367" width="1943" height="337"/>
+	<SubTexture name="poezdma0031" x="5833" y="2367" width="1943" height="337"/>
+	<SubTexture name="poezdma0032" x="1" y="2705" width="1943" height="337"/>
+	<SubTexture name="poezdma0033" x="1945" y="2705" width="1943" height="337"/>
+	<SubTexture name="poezdma0034" x="3889" y="2705" width="1943" height="337"/>
+	<SubTexture name="poezdma0035" x="5833" y="2705" width="1943" height="337"/>
+	<SubTexture name="poezdma0036" x="1" y="3043" width="1943" height="337"/>
+	<SubTexture name="poezdma0037" x="1945" y="3043" width="1943" height="337"/>
+	<SubTexture name="poezdma0038" x="3889" y="3043" width="1943" height="337"/>
+	<SubTexture name="poezdma0039" x="5833" y="3043" width="1943" height="337"/>
+	<SubTexture name="poezdma0040" x="1" y="3381" width="1943" height="337"/>
+	<SubTexture name="poezdma0041" x="1945" y="3381" width="1943" height="337"/>
+	<SubTexture name="poezdma0042" x="3889" y="3381" width="1943" height="337"/>
+	<SubTexture name="poezdma0043" x="5833" y="3381" width="1943" height="337"/>
+	<SubTexture name="poezdma0044" x="1" y="3719" width="1943" height="337"/>
+	<SubTexture name="poezdma0045" x="1945" y="3719" width="1943" height="337"/>
+	<SubTexture name="poezdma0046" x="3889" y="3719" width="1943" height="337"/>
+	<SubTexture name="poezdma0047" x="5833" y="3719" width="1943" height="337"/>
+	<SubTexture name="poezdma0048" x="1" y="4057" width="1943" height="337"/>
+	<SubTexture name="poezdma0049" x="1945" y="4057" width="1943" height="337"/>
+	<SubTexture name="poezdma0050" x="3889" y="4057" width="1943" height="337"/>
+	<SubTexture name="poezdma0051" x="5833" y="4057" width="1943" height="337"/>
+	<SubTexture name="poezdma0052" x="1" y="4395" width="1943" height="337"/>
+	<SubTexture name="poezdma0053" x="1945" y="4395" width="1943" height="337"/>
+	<SubTexture name="poezdma0054" x="3889" y="4395" width="1943" height="337"/>
+	<SubTexture name="poezdma0055" x="5833" y="4395" width="1943" height="337"/>
+	<SubTexture name="poezdma0056" x="1" y="4733" width="1943" height="337"/>
+	<SubTexture name="poezdma0057" x="1945" y="4733" width="1943" height="337"/>
+	<SubTexture name="poezdma0058" x="3889" y="4733" width="1943" height="337"/>
+	<SubTexture name="poezdma0059" x="1" y="1" width="1943" height="337"/>
+</TextureAtlas>

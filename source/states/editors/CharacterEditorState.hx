@@ -49,7 +49,6 @@ class CharacterEditorState extends MusicBeatState
 	var animsTxtGroup:FlxTypedGroup<FlxText>;
 	var curAnim = 0;
 
-	private var camEditor:FlxCamera;
 	private var camHUD:FlxCamera;
 
 	var UI_box:FlxUITabMenu;
@@ -69,7 +68,6 @@ class CharacterEditorState extends MusicBeatState
 		if(Main.gpuCache) Paths.clearStoredMemory();
 
 		FlxG.sound.music.stop();
-		camEditor = initPsychCamera();
 
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
@@ -450,7 +448,7 @@ class CharacterEditorState extends MusicBeatState
 			var intended = characterList[Std.parseInt(index)];
 			if(intended == null || intended.length < 1) return;
 
-			var characterPath:String = 'characters/$intended.json';
+			var characterPath:String = 'data/characters/$intended.json';
 			var path:String = Paths.getPath(characterPath, TEXT, null, true);
 			#if MODS_ALLOWED
 			if (FileSystem.exists(path))
@@ -1035,7 +1033,7 @@ class CharacterEditorState extends MusicBeatState
 			if(!_goToPlayState)
 			{
 				MusicBeatState.switchState(new states.editors.MasterEditorMenu());
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
 			}
 			else MusicBeatState.switchState(new PlayState());
 			return;
@@ -1198,7 +1196,7 @@ class CharacterEditorState extends MusicBeatState
 	var characterList:Array<String> = [];
 	function reloadCharacterDropDown() {
 		characterList = Mods.mergeAllTextsNamed('data/characterList.txt', Paths.getSharedPath());
-		var foldersToCheck:Array<String> = Mods.directoriesWithFile(Paths.getSharedPath(), 'characters/');
+		var foldersToCheck:Array<String> = Mods.directoriesWithFile(Paths.getSharedPath(), 'data/characters/');
 		for (folder in foldersToCheck)
 			for (file in FileSystem.readDirectory(folder))
 				if(file.toLowerCase().endsWith('.json'))
@@ -1281,12 +1279,9 @@ class CharacterEditorState extends MusicBeatState
 		var data:String = haxe.Json.stringify(json, "\t");
 
 		if (data.length > 0)
-		{
-			_file = new FileReference();
-			_file.addEventListener(#if desktop Event.SELECT #else Event.COMPLETE #end, onSaveComplete);
-			_file.addEventListener(Event.CANCEL, onSaveCancel);
-			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data, '$_char.json');
+		{	
+			trace(Paths.mods("saved char like: " + Mods.currentModDirectory + '/data/characters/$_char.json'));
+			File.saveContent(Paths.mods(Mods.currentModDirectory + '/data/characters/$_char.json'), data);
 		}
 	}
 }

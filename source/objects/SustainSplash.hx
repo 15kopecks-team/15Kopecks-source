@@ -14,8 +14,8 @@ class SustainSplash extends FlxSprite {
 
     for (color in colors)
     {
-        animation.addByPrefix('start$color', 'holdCoverStart$color', 14, false);
-        animation.addByPrefix('hold$color', 'holdCover$color', 14, true);
+        animation.addByPrefix('start$color', 'holdCoverStart$color', 24, false);
+        animation.addByPrefix('hold$color', 'holdCover$color', 24, true);
         if(!opponent)
           animation.addByPrefix('end$color', 'holdCoverEnd$color', 24, false);
     }

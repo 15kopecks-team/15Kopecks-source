@@ -40,6 +40,7 @@ import haxe.io.Path;
 #end
 
 typedef SetupFile = {
+	// var nameApp:String;
 	var gpuCache:Bool;
 	var showDevBuild:Bool;
 	var showBorderInFPS:Bool;
@@ -70,9 +71,10 @@ class Main extends Sprite
 
 	public function getSetupFile()
 	{
-		appConfig = Json.parse(Assets.getText('setup.json'));
+		appConfig = Json.parse(Assets.getText('content/setup.json'));
 			if(appConfig == null) {
 				appConfig = {
+					// nameApp: "friday night funkin'";
 					gpuCache: true,
 					showDevBuild: true,
 					showBorderInFPS: false,
