@@ -1,31 +1,238 @@
 package states;
 
-class KopeckMenu extends MusicBeatState{
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxState;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.util.FlxSignal;
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
+import options.OptionsState;
+#if DISCORD_ALLOWED
+import backend.Discord.DiscordClient;
+#end
 
-    // var list:Array<String> = ['Play', 'Settings', 'Credits'];
-    var playBtn:FlxSprite;
-    var setBtn:FlxSprite;
-    var credBtn:FlxSprite;
+import sys.io.Process;
+import sys.FileSystem;
+
+class KopeckMenu extends MusicBeatState
+{
+    final buttonNames:Array<String> = ["Credits", "Play", "Settings"];
+    final buttonPositions:Array<Array<Float>> = [[FlxG.width * 0.6, FlxG.height * 0.5], [FlxG.width * 0.35, FlxG.height * 0.085], [FlxG.width * 0.15, FlxG.height * 0.45]];
+    final buttonTargetStates:Array<FlxState> = [new CreditsState(), new KopeckSongSelect(), new OptionsState()];
+
+    private var buttons:FlxTypedGroup<KopeckMenuItem>;
+
+    var busy:Bool = false;
 
     override function create() {
+        if(FlxG.sound.music == null) {
+            FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic), 0);
+        }
+        FlxG.sound.music.fadeIn(4, 0, 0.7);
+        #if DISCORD_ALLOWED
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("In the Menus", null);
+		#end
+
         var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menus/main/bg"));
-        bg.setGraphicSize(1310, 750);
+        bg.setGraphicSize(bg.width * 0.69, bg.height * 0.69);
         bg.updateHitbox();
         add(bg);
 
-        playBtn = new FlxSprite(0, 300);
-        playBtn.frames = Paths.getSparrowAtlas('menus/main/buttons/Play_Button');
-        playBtn.animation.addByPrefix('choosed', 'idle_choosed', 24, true);
-        playBtn.animation.play('choosed');
-        add(playBtn);
+        buttons = new FlxTypedGroup<KopeckMenuItem>();
+        for (i in 0...buttonNames.length)
+        {
+            final menuItem:KopeckMenuItem = new KopeckMenuItem(buttonPositions[i][0], buttonPositions[i][1], buttonNames[i], buttonTargetStates[i]);
+            menuItem.onPress.add(pressedButton);
+            menuItem.updateHitbox();
+
+            buttons.add(menuItem);
+        }
+        add(buttons);
 
         super.create();
     }
 
-    override function update(elapsed:Float) {
+    function pressedButton():Void
+    {
+        buttons.forEach(function(item:KopeckMenuItem) item.name == 'Credits' ? item.blocked = false : item.blocked = false);
+        busy = false; 
+    }
+
+    override function update(elapsed:Float)
+    {
         super.update(elapsed);
 
-        // FlxG.camera.x = FlxMath.lerp(FlxG.camera.x, (FlxG.mouse.screenX - (FlxG.width / 2)) * 0.020, (1 / 30) * 130 * elapsed);
-        // FlxG.camera.y = FlxMath.lerp(FlxG.camera.y, (FlxG.mouse.screenY - 4 - (FlxG.height / 2)) * 0.020, (1 / 30) * 130 * elapsed);
+        if (busy) return;
+
+        // if (controls.BACK)
+        // {
+        //     FlxG.sound.play(Paths.sound('cancelMenu'), 0.7);
+        //     // FlxG.switchState(new KopeckTitle());
+        // }
+    }
+}
+
+class KopeckMenuItem extends FlxSprite
+{
+    var originX:Float;
+
+    var originY:Float;
+
+    public var name:String;
+
+    var targetState:FlxState;
+
+    public var blocked:Bool = false;
+
+    public var selected:Bool = false;
+
+    public var onSelect(default, null):FlxSignal = new FlxSignal();
+
+    public var onDeselect(default, null):FlxSignal = new FlxSignal();
+
+    public var onPress(default, null):FlxSignal = new FlxSignal();
+
+    public function new(xPos:Float, yPos:Float, name:String, targetState:FlxState)
+    {
+        super(xPos, yPos);
+
+        originX = xPos;
+        originY = yPos;
+        this.name = name;
+        this.targetState = targetState;
+
+        final menuItemPath:String = (name == "Credits") ? name.toLowerCase() : "logo" + name.toLowerCase();
+        frames = Paths.getSparrowAtlas("menus/main/buttons/" + menuItemPath, "content");
+        animation.addByPrefix("idle", "idle_choosed", 24, true);
+        animation.addByPrefix("pressed", name + "_pressed", 24, false);
+        animation.addByPrefix("choosed", name + "_choosed", 24, false);
+
+        final outAnim:String = (name == "Credits") ? "Credits_full" : "logo" + name.toLowerCase() + "_exit";
+        animation.addByPrefix("out", outAnim, 24, false);
+        playAnim("out");
+
+        scale.set(0.6, 0.6);
+
+        SetupSignals();
+    }
+
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        if (selected && animation.curAnim != null && animation.curAnim.name == "choosed" && animation.curAnim.finished) playAnim("idle");
+
+        if (blocked) return;
+    
+        if (FlxG.mouse.overlaps(this))
+        {
+            if (FlxG.mouse.justPressed)
+            {
+                onPress.dispatch();
+            }
+            else
+            {
+                onSelect.dispatch();
+            }
+        }
+        else if (selected && !FlxG.mouse.overlaps(this))
+        {
+            onDeselect.dispatch();
+        }
+
+        
+    }
+
+    function SetupSignals():Void
+    {
+        onSelect.add(SelectButton);
+        onDeselect.add(DeselectButton);
+        onPress.add(PressButton);
+    }
+
+    function SelectButton():Void
+    {
+        if (!selected)
+        {
+            FlxG.sound.play(Paths.sound('scrollMenu'), 0.7);
+            selected = true;
+            if (name == "Credits") 
+                playAnim("idle");
+            else
+                playAnim("choosed");
+        }
+    }
+
+    function DeselectButton():Void
+    {
+        if (selected)
+        {
+            selected = false;
+            playAnim("out");
+        }
+    }
+
+    function PressButton():Void
+    {
+        FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+        playAnim("pressed");
+
+        new FlxTimer().start(1, function(tmr:FlxTimer)
+        {
+            if(name != "Credits")
+                FlxG.switchState(targetState);
+            else{
+                openHTML();
+            }
+                
+        });
+    }
+
+    function openHTML():Void {
+        var htmlPath:String = "content/15Koppek/index.html"; // Adjust the path as needed
+        if (FileSystem.exists(htmlPath)) {
+            lime.system.System.openFile(htmlPath);
+        } else {
+            trace("Error: File not found - " + htmlPath);
+        }
+    }
+
+    function playAnim(anim:String):Void
+    {
+        if (anim == "out")
+        {
+            playOutAnim();
+            // return;
+        }
+
+        x = originX;
+        y = originY;
+
+        if (anim == "choosed" && name == "Settings")
+        {
+            y = originY - 22;
+        }
+
+        animation.play(anim);
+    }
+
+    function playOutAnim():Void
+    {
+        var offsets:Array<Float> = [0, 0];
+        switch (name)
+        {
+            case "Credits":
+                offsets = [-50, -50];
+            case "Play":
+                offsets = [-50, -50];
+            case "Settings":
+                offsets = [-50, -50];
+        }
+
+        x = originX + offsets[0];
+        y = originY + offsets[1];
+        animation.play("out");
     }
 }

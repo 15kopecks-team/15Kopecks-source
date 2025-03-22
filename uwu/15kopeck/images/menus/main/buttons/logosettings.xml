@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="logosettings.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Settings_choosed0000" x="1" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0001" x="1" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0002" x="822" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0003" x="822" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0004" x="1643" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0005" x="1643" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0006" x="2464" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0007" x="2464" y="1" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0008" x="1" y="684" width="820" height="682"/>
+	<SubTexture name="Settings_choosed0009" x="1" y="684" width="820" height="682"/>
+	<SubTexture name="Settings_pressed0000" x="822" y="684" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0001" x="1643" y="684" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0002" x="2464" y="684" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0003" x="2464" y="684" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0004" x="1" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0005" x="822" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0006" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0007" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0008" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0009" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0010" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0011" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0012" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0013" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0014" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0015" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0016" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0017" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0018" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0019" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0020" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0021" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0022" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0023" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0024" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0025" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0026" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0027" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="Settings_pressed0028" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0000" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0001" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0002" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0003" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0004" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0005" x="2464" y="1367" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0006" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0007" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0008" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0009" x="1" y="2005" width="820" height="637"/>
+	<SubTexture name="idle_choosedS0010" x="1643" y="1367" width="820" height="637"/>
+	<SubTexture name="logosettings_exit0000" x="822" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0001" x="822" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0002" x="1486" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0003" x="1486" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0004" x="2150" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0005" x="2150" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0006" x="2150" y="2005" width="663" height="574"/>
+	<SubTexture name="logosettings_exit0007" x="2150" y="2005" width="663" height="574"/>
+</TextureAtlas>

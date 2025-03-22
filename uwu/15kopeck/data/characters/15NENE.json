@@ -1,107 +1,107 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				4,
 				29
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "idle"
+			"fps": 24,
+			"name": "idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				114,
 				-43
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "left"
+			"fps": 24,
+			"name": "left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				36,
 				-38
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "down"
+			"fps": 24,
+			"name": "down",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				10,
 				19
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "up"
+			"fps": 24,
+			"name": "up",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-15,
 				-13
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "right"
+			"fps": 24,
+			"name": "right",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				23,
 				51
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUPmiss",
-			"indices": [],
-			"name": "missu"
+			"fps": 24,
+			"name": "missu",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				111,
 				20
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "missl"
+			"fps": 24,
+			"name": "missl",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				41,
 				-40
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWNmiss",
-			"indices": [],
-			"name": "missd"
+			"fps": 24,
+			"name": "missd",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-13,
 				-14
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"indices": [],
-			"name": "missr"
+			"fps": 24,
+			"name": "missr",
+			"indices": []
 		}
 	],
 	"vocals_file": "",
-	"no_antialiasing": true,
+	"no_antialiasing": false,
 	"image": "characters/nene15",
 	"position": [
 		0,

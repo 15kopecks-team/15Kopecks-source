@@ -127,7 +127,17 @@ class Paths
 
 	static public function getLibraryPath(file:String, library = "shared")
 	{
-		return if (library == "shared") getSharedPath(file); else getLibraryPathForce(file, library);
+		switch (library)
+		{
+			case "shared":
+				return getSharedPath(file);
+			case "content":
+				return getKopeckPath(file);
+			default:
+				// Nothing.
+		}
+
+		return getLibraryPathForce(file, library);
 	}
 
 	inline static function getLibraryPathForce(file:String, library:String, ?level:String)
@@ -140,6 +150,11 @@ class Paths
 	inline public static function getSharedPath(file:String = '')
 	{
 		return 'assets/shared/$file';
+	}
+
+	inline public static function getKopeckPath(file:String = '')
+	{
+		return 'content/15kopeck/$file';
 	}
 
 	inline static public function txt(key:String, ?library:String)
@@ -219,13 +234,15 @@ class Paths
 	}
 
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
-	static public function image(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxGraphic
+	static public function image(key:String, ?library:String = null, ?allowGPU:Bool = false):FlxGraphic
 	{
 		var bitmap:BitmapData = null;
 		var file:String = null;
 
 		#if MODS_ALLOWED
 		file = modsImages(key);
+		// trace(file);
+
 		if (currentTrackedAssets.exists(file))
 		{
 			localTrackedAssets.push(file);
@@ -237,6 +254,8 @@ class Paths
 		#end
 		{
 			file = getPath('images/$key.png', IMAGE, library);
+			trace(file);
+
 			if (currentTrackedAssets.exists(file))
 			{
 				localTrackedAssets.push(file);
@@ -382,6 +401,7 @@ class Paths
 	inline static public function getSparrowAtlas(key:String, ?library:String = null, ?allowGPU:Bool = true):FlxAtlasFrames
 	{
 		var imageLoaded:FlxGraphic = image(key, library, allowGPU);
+		// trace(getPath('images/$key.xml', library));
 		#if MODS_ALLOWED
 		var xmlExists:Bool = false;
 

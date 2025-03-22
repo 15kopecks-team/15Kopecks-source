@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ramen.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ramen_idle0000" x="1" y="1" width="188" height="257"/>
+	<SubTexture name="ramen_loop0000" x="190" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0001" x="190" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0002" x="190" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0003" x="190" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0004" x="440" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0005" x="440" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0006" x="440" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0007" x="440" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0008" x="690" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0009" x="690" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0010" x="690" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_loop0011" x="690" y="1" width="249" height="280"/>
+	<SubTexture name="ramen_start0000" x="1" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0001" x="1" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0002" x="251" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0003" x="251" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0004" x="501" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0005" x="501" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0006" x="501" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0007" x="501" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0008" x="751" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0009" x="751" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0010" x="751" y="282" width="249" height="348"/>
+	<SubTexture name="ramen_start0011" x="751" y="282" width="249" height="348"/>
+</TextureAtlas>

@@ -4245,6 +4245,7 @@
 		],
 		"gfVersion": "gf",
 		"gameOverLoop": "deathNENE/idle",
+		"gameOverChar": "15NENE-death",
 		"gameOverEnd": "deathNENE/Confirm",
 		"song": "bing-chillin",
 		"arrowSkin": "noteSkins/NOTE_assets",

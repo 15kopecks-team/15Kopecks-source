@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="mask.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="mask_idle0000" x="1" y="1" width="144" height="165"/>
+	<SubTexture name="mask_loop0000" x="146" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0001" x="146" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0002" x="146" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0003" x="146" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0004" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0005" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0006" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0007" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0008" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0009" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0010" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_loop0011" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0000" x="800" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0001" x="800" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0002" x="146" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0003" x="146" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0004" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0005" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0006" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0007" x="364" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0008" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0009" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0010" x="582" y="1" width="217" height="277"/>
+	<SubTexture name="mask_start0011" x="582" y="1" width="217" height="277"/>
+</TextureAtlas>

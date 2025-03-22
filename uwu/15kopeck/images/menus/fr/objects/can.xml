@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="can.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="can_idle0000" x="1" y="1" width="107" height="153"/>
+	<SubTexture name="can_loop0000" x="109" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0001" x="109" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0002" x="109" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0003" x="109" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0004" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0005" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0006" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0007" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_loop0008" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_loop0009" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_loop0010" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_loop0011" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_start0000" x="170" y="199" width="168" height="197"/>
+	<SubTexture name="can_start0001" x="170" y="199" width="168" height="197"/>
+	<SubTexture name="can_start0002" x="109" y="1" width="168" height="197"/>
+	<SubTexture name="can_start0003" x="109" y="1" width="168" height="197"/>
+	<SubTexture name="can_start0004" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_start0005" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_start0006" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_start0007" x="278" y="1" width="168" height="197"/>
+	<SubTexture name="can_start0008" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_start0009" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_start0010" x="1" y="199" width="168" height="197"/>
+	<SubTexture name="can_start0011" x="1" y="199" width="168" height="197"/>
+</TextureAtlas>

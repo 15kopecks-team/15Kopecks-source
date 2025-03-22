@@ -1,0 +1,157 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				61,
+				26
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "left"
+		},
+		{
+			"offsets": [
+				0,
+				-76
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "down"
+		},
+		{
+			"offsets": [
+				-4,
+				99
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUP",
+			"indices": [],
+			"name": "up"
+		},
+		{
+			"offsets": [
+				34,
+				20
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "right"
+		},
+		{
+			"offsets": [
+				51,
+				22
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "missr"
+		},
+		{
+			"offsets": [
+				68,
+				30
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "missl"
+		},
+		{
+			"offsets": [
+				-13,
+				102
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "missu"
+		},
+		{
+			"offsets": [
+				-4,
+				-65
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "missd"
+		},
+		{
+			"offsets": [
+				116,
+				-26
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "deathFisrt",
+			"loop": false,
+			"name": "gameover_start"
+		},
+		{
+			"offsets": [
+				130,
+				-30
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "deathLoop",
+			"loop": false,
+			"name": "gameover_loop"
+		},
+		{
+			"offsets": [
+				140,
+				-20
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "deathConfirm",
+			"loop": false,
+			"name": "gameover_end"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/hunter_GAMEOVER",
+	"position": [
+		-400,
+		350
+	],
+	"healthicon": "hunter",
+	"flip_x": true,
+	"healthbar_colors": [
+		0,
+		141,
+		161
+	],
+	"camera_position": [
+		40,
+		140
+	],
+	"sing_duration": 4,
+	"scale": 0.9,
+	"_editor_isPlayer": true
+}

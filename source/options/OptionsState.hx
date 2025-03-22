@@ -1,6 +1,6 @@
 package options;
 
-import states.MainMenuState;
+import states.KopeckMenu;
 import backend.StageData;
 
 class OptionsState extends MusicBeatState
@@ -28,7 +28,7 @@ class OptionsState extends MusicBeatState
 					LoadingState.loadAndSwitchState(new PlayState());
 					FlxG.sound.music.volume = 0;
 				}
-				else MusicBeatState.switchState(new MainMenuState());
+				else MusicBeatState.switchState(new KopeckMenu());
 		}
 	}
 
@@ -92,7 +92,7 @@ class OptionsState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new PlayState());
 				FlxG.sound.music.volume = 0;
 			}
-			else MusicBeatState.switchState(new MainMenuState());
+			else MusicBeatState.switchState(new KopeckMenu());
 		}
 		else if (controls.ACCEPT) openSelectedSubstate(options[curSelected]);
 	}

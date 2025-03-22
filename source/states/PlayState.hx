@@ -2396,7 +2396,7 @@ class PlayState extends MusicBeatState
 				Mods.loadTopMod();
 				#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
-				MusicBeatState.switchState(new FreeplayState());
+				MusicBeatState.switchState(new KopeckSongSelect());
 				FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
 				changedDifficulty = false;
 			}

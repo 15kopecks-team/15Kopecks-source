@@ -44,8 +44,8 @@ elseif curStep == 2176 and hideHud == false then
 	setProperty('iconP1.visible', false) 
 	setProperty('iconP2.visible', false) 
 	setProperty('healthBar.visible', false) 
-	setProperty('showRating', false);
-   setProperty('showComboNum', false);
+	-- setProperty('showRating', false);
+--    setProperty('showComboNum', false);
    setProperty('healthBarBG.visible', false) 
 end
 if curStep == 2416 then

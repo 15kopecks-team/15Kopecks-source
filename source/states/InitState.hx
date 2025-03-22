@@ -39,7 +39,7 @@ class InitState extends MusicBeatState
 
         Highscore.load();
 
-        MusicBeatState.switchState(new KopeckTitle());
+        MusicBeatState.switchState(new KopeckMenu());
 
         
 

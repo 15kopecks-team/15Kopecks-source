@@ -1,103 +1,103 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"anim": "idle",
+			"loop": false,
 			"fps": 24,
-			"name": "idle",
-			"indices": []
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				61,
 				26
 			],
-			"anim": "singLEFT",
+			"loop": false,
 			"fps": 24,
-			"name": "left",
-			"indices": []
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "left"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				0,
 				-76
 			],
-			"anim": "singDOWN",
+			"loop": false,
 			"fps": 24,
-			"name": "down",
-			"indices": []
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "down"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-4,
 				99
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "up",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "up"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				34,
 				20
 			],
-			"anim": "singRIGHT",
+			"loop": false,
 			"fps": 24,
-			"name": "right",
-			"indices": []
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "right"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				51,
 				22
 			],
-			"anim": "singRIGHTmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "missr",
-			"indices": []
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "missr"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				68,
 				30
 			],
-			"anim": "singLEFTmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "missl",
-			"indices": []
+			"anim": "singLEFTmiss",
+			"indices": [],
+			"name": "missl"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-13,
 				102
 			],
-			"anim": "singUPmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "missu",
-			"indices": []
+			"anim": "singUPmiss",
+			"indices": [],
+			"name": "missu"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-4,
 				-65
 			],
-			"anim": "singDOWNmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "missd",
-			"indices": []
+			"anim": "singDOWNmiss",
+			"indices": [],
+			"name": "missd"
 		}
 	],
 	"vocals_file": "",
@@ -110,9 +110,9 @@
 	"healthicon": "hunter",
 	"flip_x": true,
 	"healthbar_colors": [
-		0,
-		141,
-		161
+		41,
+		179,
+		182
 	],
 	"camera_position": [
 		40,

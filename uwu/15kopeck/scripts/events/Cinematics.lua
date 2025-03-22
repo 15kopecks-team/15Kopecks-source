@@ -24,13 +24,11 @@ function onCreatePost()
     luaGraphic("topBar", 0, -1)
     luaGraphic("bottomBar", 0, screenHeight)
 
-    if stringStartsWith(version, "0.7") then
-        hpOpacity = getPropertyFromClass("backend.ClientPrefs", "data.healthBarAlpha")
-        hudItems.opaque = {"scoreTxt","timeBar","timeTxt"}
-        hudItems.nonOpaque = {"newHealthBar","iconP1","iconP2"}
-        orderCheck.underNotes = "uiGroup"
-        orderCheck.overNotes = "uiGroup"
-    end
+        -- hpOpacity = getPropertyFromClass("backend.ClientPrefs", "data.healthBarAlpha")
+    hudItems.opaque = {"scoreTxt","timeBar","timeTxt"}
+    hudItems.nonOpaque = {"newHealthBar","iconP1","iconP2"}
+    orderCheck.underNotes = "uiGroup"
+    orderCheck.overNotes = "uiGroup"
 end
 
 function onCountdownStarted() -- cause of dialogue shit lol (thanks Oxhidoupsil for report)
@@ -84,7 +82,7 @@ function onEvent(eventName, value1, value2)
             end
 
             for i = 1, #hudItems.nonOpaque do
-                doTweenAlpha("nonOpaqueFade"..i, hudItems.nonOpaque[i], hpOpacity, tonumber(barProperties[2]), "quadOut")
+                doTweenAlpha("nonOpaqueFade"..i, hudItems.nonOpaque[i], 1, tonumber(barProperties[2]), "quadOut")
             end
 
             for i = 0, 3 do

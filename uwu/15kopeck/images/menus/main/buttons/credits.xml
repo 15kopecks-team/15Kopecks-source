@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="credits.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Credits_full0000" x="1" y="1" width="527" height="417"/>
+	<SubTexture name="Credits_pressed0000" x="529" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0001" x="529" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0002" x="1207" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0003" x="1885" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0004" x="2563" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0005" x="2563" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0006" x="3241" y="1" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0007" x="1" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0008" x="679" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0009" x="679" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0010" x="1357" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0011" x="2035" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0012" x="2713" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0013" x="2713" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0014" x="3391" y="1040" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0015" x="1" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0016" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0017" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0018" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0019" x="1357" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0020" x="1357" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0021" x="1357" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0022" x="1357" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0023" x="2035" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0024" x="2035" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0025" x="2035" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0026" x="2035" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0027" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0028" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0029" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="Credits_pressed0030" x="679" y="2079" width="677" height="1038"/>
+	<SubTexture name="idle_choosed0000" x="2713" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0001" x="2713" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0002" x="2713" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0003" x="2713" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0004" x="3391" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0005" x="3391" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0006" x="3391" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0007" x="3391" y="2079" width="677" height="563"/>
+	<SubTexture name="idle_choosed0008" x="1" y="3118" width="677" height="563"/>
+	<SubTexture name="idle_choosed0009" x="1" y="3118" width="677" height="563"/>
+	<SubTexture name="idle_choosed0010" x="1" y="3118" width="677" height="563"/>
+	<SubTexture name="idle_choosed0011" x="1" y="3118" width="677" height="563"/>
+</TextureAtlas>
