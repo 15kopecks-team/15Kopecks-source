@@ -57,7 +57,7 @@ class KopeckMenu extends MusicBeatState
 
     function pressedButton():Void
     {
-        buttons.forEach(function(item:KopeckMenuItem) item.name == 'Credits' ? item.blocked = false : item.blocked = false);
+        buttons.forEach(function(item:KopeckMenuItem) item.name == 'Credits' ? item.blocked = false : item.blocked = true);
         busy = false; 
     }
 
