@@ -254,7 +254,6 @@ class Paths
 		#end
 		{
 			file = getPath('images/$key.png', IMAGE, library);
-			trace(file);
 
 			if (currentTrackedAssets.exists(file))
 			{

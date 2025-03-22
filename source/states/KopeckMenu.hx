@@ -18,8 +18,8 @@ import sys.FileSystem;
 class KopeckMenu extends MusicBeatState
 {
     final buttonNames:Array<String> = ["Credits", "Play", "Settings"];
-    final buttonPositions:Array<Array<Float>> = [[FlxG.width * 0.6, FlxG.height * 0.5], [FlxG.width * 0.35, FlxG.height * 0.085], [FlxG.width * 0.15, FlxG.height * 0.45]];
-    final buttonTargetStates:Array<FlxState> = [new CreditsState(), new KopeckSongSelect(), new OptionsState()];
+    final buttonPositions:Array<Array<Float>> = [[FlxG.width * 0.6, FlxG.height * 0.5], [FlxG.width * 0.325, FlxG.height * 0.075], [FlxG.width * 0.1, FlxG.height * 0.4]];
+    final buttonTargetStates:Array<FlxState> = [null, new KopeckSongSelect(), new OptionsState()];
 
     private var buttons:FlxTypedGroup<KopeckMenuItem>;
 
@@ -30,6 +30,7 @@ class KopeckMenu extends MusicBeatState
             FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic), 0);
         }
         FlxG.sound.music.fadeIn(4, 0, 0.7);
+
         #if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -65,12 +66,6 @@ class KopeckMenu extends MusicBeatState
         super.update(elapsed);
 
         if (busy) return;
-
-        // if (controls.BACK)
-        // {
-        //     FlxG.sound.play(Paths.sound('cancelMenu'), 0.7);
-        //     // FlxG.switchState(new KopeckTitle());
-        // }
     }
 }
 
@@ -141,8 +136,6 @@ class KopeckMenuItem extends FlxSprite
         {
             onDeselect.dispatch();
         }
-
-        
     }
 
     function SetupSignals():Void
@@ -204,15 +197,23 @@ class KopeckMenuItem extends FlxSprite
         if (anim == "out")
         {
             playOutAnim();
-            // return;
+            return;
         }
 
         x = originX;
         y = originY;
 
-        if (anim == "choosed" && name == "Settings")
+        switch (name)
         {
-            y = originY - 22;
+            case "Credits":
+                if (anim == "idle")
+                {
+                    x = originX - 5;
+                    y = originY - 7.5;
+                }
+
+            case "Settings":
+                if (anim == "choosed") y = originY - 27;
         }
 
         animation.play(anim);
@@ -224,11 +225,11 @@ class KopeckMenuItem extends FlxSprite
         switch (name)
         {
             case "Credits":
-                offsets = [-50, -50];
+                offsets = [26, 38];
             case "Play":
-                offsets = [-50, -50];
+                offsets = [45, 30];
             case "Settings":
-                offsets = [-50, -50];
+                offsets = [35, -5];
         }
 
         x = originX + offsets[0];
