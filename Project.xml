@@ -3,10 +3,10 @@
 	<!-- _________________________ Application Settings _________________________ -->
 
 	<app
-		title="Friday Night Funkin': 15kopecks"
-		file="15kopecks"
-		packageName="com.dUmer.15kopecks"
-		package="com.dUmer.15kopecks"
+		title="Friday Night Funkin': kopecks"
+		file="kopecks"
+		packageName="com.dUmer.kopecks"
+		package="com.dUmer.kopecks"
 		main="Main"
 		version="0.2.8"
 		company="dUmer"
@@ -28,11 +28,12 @@
 	
 	<!-- ______________________ PSYCH ENGINE CUSTOMIZATION ______________________ -->
 
-	<define name="MODS_ALLOWED" if="desktop" />
+	<define name="MODS_ALLOWED" if="desktop || mobile" />
 	<define name="HSCRIPT_ALLOWED" if="desktop" />
-	<define name="LUA_ALLOWED" if="desktop" />
+	<define name="LUA_ALLOWED" if="desktop || mobile" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
-	<define name="DISCORD_ALLOWED" />
+	<define name="DISCORD_ALLOWED" unless="mobile"/>
+	<define name="COPYSTATE_ALLOWED" if="mobile"/>
 	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 
 	<section if="officialBuild">
@@ -110,9 +111,6 @@
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
 
-	<!--Mobile shit-->
-	<haxelib name="extension-androidtools" if="android"/>
-
 	<!-- Disable Discord IO Thread -->
 	<haxedef name="DISCORD_DISABLE_IO_THREAD" if="hxdiscord_rpc" />
 	<haxedef name="NO_PRECOMPILED_HEADERS" if="linux" />
@@ -160,6 +158,9 @@
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_TRACE" if="CRASH_HANDLER" />
+
+	<!--Prevent compile error on mobile-->
+	<haxedef name="DISABLE_MACRO_SUPERLATIVE" if="mobile" />
 	
 	<!--Disable deprecated warnings-->
 	<haxedef name='no-deprecation-warnings' />

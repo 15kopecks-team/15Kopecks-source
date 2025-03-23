@@ -32,6 +32,14 @@ import haxe.CallStack;
 import haxe.io.Path;
 #end
 
+#if mobile
+import mobile.backend.StorageUtil;
+#end
+
+#if COPYSTATE_ALLOWED
+import mobile.states.CopyState;
+#end
+
 #if linux
 @:cppInclude('./external/gamemode_client.h')
 @:cppFileCode('
@@ -53,7 +61,7 @@ class Main extends Sprite
 	var game = {
 		width: 1280, // WINDOW width
 		height: 720, // WINDOW height
-		initialState: InitState, // initial game state
+		initialState: #if COPYSTATE_ALLOWED CopyState #else TitleState #end, // initial game state
 		zoom: -1.0, // game state bounds
 		framerate: 60, // default framerate
 		skipSplash: true, // if the default flixel splash screen should be skipped
@@ -96,11 +104,11 @@ class Main extends Sprite
 	{
 		super();
 
-		// Credits to MAJigsaw77 (he's the og author for this code)
+		#if mobile
 		#if android
-		Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
-		#elseif ios
-		Sys.setCwd(lime.system.System.applicationStorageDirectory);
+		StorageUtil.requestPermissions();
+		#end
+		Sys.setCwd(StorageUtil.getStorageDirectory());
 		#end
 
 		if (stage != null)

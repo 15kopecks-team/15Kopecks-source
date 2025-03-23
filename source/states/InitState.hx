@@ -26,7 +26,9 @@ class InitState extends MusicBeatState
     var shader:Dynamic;
 
     override function create() {
+        #if !mobile
         CppAPI.darkMode();
+        #end
 
         #if LUA_ALLOWED
 		Mods.pushGlobalMods();

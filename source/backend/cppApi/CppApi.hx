@@ -2,7 +2,7 @@ package backend.cppApi;
 
 class CppAPI
 {
-	#if cpp
+	#if !mobile
 	public static function obtainRAM():Int
 	{
 		return WindowsData.obtainRAM();
