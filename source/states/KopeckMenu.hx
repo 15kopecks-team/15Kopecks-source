@@ -18,6 +18,8 @@ import sys.FileSystem;
 
 class KopeckMenu extends MusicBeatState
 {
+    var justStarted:Bool = true;
+
     final buttonNames:Array<String> = ["Credits", "Play", "Settings"];
     final buttonPositions:Array<Array<Float>> = [[FlxG.width * 0.6, FlxG.height * 0.5], [FlxG.width * 0.325, FlxG.height * 0.075], [FlxG.width * 0.1, FlxG.height * 0.4]];
     final buttonTargetStates:Array<FlxState> = [null, new KopeckSongSelect(), new OptionsState()];
@@ -30,7 +32,12 @@ class KopeckMenu extends MusicBeatState
         if(FlxG.sound.music == null) {
             FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic), 0);
         }
-        FlxG.sound.music.fadeIn(4, 0, 0.7);
+
+        if (justStarted)
+        {
+            FlxG.sound.music.fadeIn(4, 0, 0.7);
+            justStarted = false;
+        }
 
         #if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
@@ -48,6 +55,8 @@ class KopeckMenu extends MusicBeatState
             final menuItem:KopeckMenuItem = new KopeckMenuItem(buttonPositions[i][0], buttonPositions[i][1], buttonNames[i], buttonTargetStates[i]);
             menuItem.onPress.add(pressedButton);
             menuItem.updateHitbox();
+
+            add(menuItem.theFakeHitbox);
 
             buttons.add(menuItem);
         }
@@ -80,6 +89,8 @@ class KopeckMenuItem extends FlxSprite
 
     var targetState:FlxState;
 
+    public var theFakeHitbox:FlxSprite;
+
     public var blocked:Bool = false;
 
     public var selected:Bool = false;
@@ -111,6 +122,13 @@ class KopeckMenuItem extends FlxSprite
 
         scale.set(0.6, 0.6);
 
+        theFakeHitbox = new FlxSprite(xPos + 100, yPos + 100).makeGraphic(250, 250, FlxColor.WHITE);
+        if (name == "Credits")
+        {
+            theFakeHitbox.x -= 25;
+            theFakeHitbox.y -= 25;
+        }
+
         SetupSignals();
     }
 
@@ -122,7 +140,7 @@ class KopeckMenuItem extends FlxSprite
 
         if (blocked) return;
     
-        if (FlxG.mouse.overlaps(this))
+        if (FlxG.mouse.overlaps(theFakeHitbox))
         {
             if (FlxG.mouse.justPressed)
             {
@@ -133,7 +151,7 @@ class KopeckMenuItem extends FlxSprite
                 onSelect.dispatch();
             }
         }
-        else if (selected && !FlxG.mouse.overlaps(this))
+        else if (selected && !FlxG.mouse.overlaps(theFakeHitbox))
         {
             onDeselect.dispatch();
         }

@@ -126,6 +126,8 @@ class KopeckSongObject extends FlxSprite
 
     var songName:String;
 
+    public var theFakeHitbox:FlxSprite;
+
     public var blocked:Bool = false;
 
     public var selected:Bool = false;
@@ -150,6 +152,9 @@ class KopeckSongObject extends FlxSprite
 		animation.addByPrefix("start", objectName + "_start", 24, false);
         playAnim("idle");
 
+        theFakeHitbox = new FlxSprite(xPos, yPos).makeGraphic(200, 200, FlxColor.WHITE);
+        theFakeHitbox.scrollFactor.set(0.5, 0.5);
+
         SetupSignals();
     }
 
@@ -161,7 +166,7 @@ class KopeckSongObject extends FlxSprite
 
         if (blocked) return;
     
-        if (FlxG.mouse.overlaps(this))
+        if (FlxG.mouse.overlaps(theFakeHitbox))
         {
             if (FlxG.mouse.justPressed)
             {
@@ -172,7 +177,7 @@ class KopeckSongObject extends FlxSprite
                 onSelect.dispatch();
             }
         }
-        else if (selected && !FlxG.mouse.overlaps(this))
+        else if (selected && !FlxG.mouse.overlaps(theFakeHitbox))
         {
             onDeselect.dispatch();
         }
