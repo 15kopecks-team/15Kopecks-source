@@ -6,6 +6,9 @@ import flixel.FlxSprite;
 import flixel.util.FlxTimer;
 import flixel.util.FlxSignal;
 import flixel.group.FlxGroup.FlxTypedGroup;
+#if DISCORD_ALLOWED
+import backend.Discord.DiscordClient;
+#end
 import backend.Highscore;
 import backend.Song;
 
@@ -16,13 +19,14 @@ class KopeckSongSelect extends MusicBeatState
 	private var items:FlxSprite;
 
     final objectPositions:Array<Array<Float>> = [
-        [820, 100],
-        [750, 580],
-        [1120, 670],
-        [1250, -800],
-        [1220, 800],
-        [450, 250],
-        [1000, 780]];
+        [555, -25],
+        [475, 430],
+        [840, 340],
+        [1170, 380],
+        [950, 645],
+        [155, 95],
+        [710, 620]
+    ];
 
     final objectData:Array<Array<String>> = [
         ["cigarate", "tuberculosis"], 
@@ -31,7 +35,8 @@ class KopeckSongSelect extends MusicBeatState
         ["boombox", "st4r-fever"], 
         ["ramen", "bing-chillin"], 
         ["mask", "pig-ful"], 
-        ["can", "beer-n-cider"]];
+        ["can", "beer-n-cider"]
+    ];
 
     private var objects:FlxTypedGroup<KopeckSongObject>;
 
@@ -41,6 +46,11 @@ class KopeckSongSelect extends MusicBeatState
 
 	override function create()
 	{
+        #if DISCORD_ALLOWED
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("In the Menus", null);
+		#end
+
 		bg = new FlxSprite(Paths.image("menus/fr/bg"));
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
@@ -61,8 +71,6 @@ class KopeckSongSelect extends MusicBeatState
         {
             final songObject:KopeckSongObject = new KopeckSongObject(objectPositions[i][0], objectPositions[i][1], objectData[i][0], objectData[i][1]);
             songObject.onPress.add(pressedButton);
-            songObject.x += items.x;
-            songObject.y += items.y;
             songObject.updateHitbox();
 
             objects.add(songObject);
@@ -101,6 +109,10 @@ class KopeckSongSelect extends MusicBeatState
 
 class KopeckSongObject extends FlxSprite
 {
+    var originX:Float;
+
+    var originY:Float;
+
     var songName:String;
 
     public var blocked:Bool = false;
@@ -117,12 +129,15 @@ class KopeckSongObject extends FlxSprite
     {
         super(xPos, yPos);
 
+        this.originX = xPos;
+        this.originY = yPos;
         this.songName = songName;
-        //alpha = 0.00001;
 
         frames = Paths.getSparrowAtlas('menus/fr/objects/$objectName', "content");
-		animation.addByPrefix("start", objectName + "_start", 24, false);
+        animation.addByPrefix("idle", objectName + "_idle", 24, true);
         animation.addByPrefix("loop", objectName + "_loop", 24, true);
+		animation.addByPrefix("start", objectName + "_start", 24, false);
+        playAnim("idle");
 
         SetupSignals();
     }
@@ -130,6 +145,8 @@ class KopeckSongObject extends FlxSprite
     override function update(elapsed:Float)
     {
         super.update(elapsed);
+
+        if (selected && animation.curAnim != null && animation.curAnim.name == "start" && animation.curAnim.finished) playAnim("loop");
 
         if (blocked) return;
     
@@ -163,9 +180,8 @@ class KopeckSongObject extends FlxSprite
         {
             FlxG.sound.play(Paths.sound('scrollMenu'), 0.7);
             selected = true;
-            alpha = 1;
 
-            animation.play("start");
+            playAnim("loop");
         }
     }
 
@@ -174,17 +190,14 @@ class KopeckSongObject extends FlxSprite
         if (selected)
         {
             selected = false;
-            alpha = 0.5;
-            //alpha = 0.00001;
-
-            animation.play("loop");
+            playAnim("idle");
         }
     }
 
     function PressButton():Void
     {
         FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-        animation.play("start");
+        playAnim("start");
 
         new FlxTimer().start(1, function(tmr:FlxTimer)
         {
@@ -218,5 +231,39 @@ class KopeckSongObject extends FlxSprite
             return;
         }
         LoadingState.loadAndSwitchState(new PlayState());
+    }
+
+    function playAnim(anim:String):Void
+    {
+        if (anim == "idle")
+        {
+            x = originX;
+            y = originY;
+        }
+        else
+        {
+            var offsets:Array<Float> = [0, 0];
+            switch (songName)
+            {
+                case "tuberculosis":
+                    offsets = [-30, -40];
+                case "kvartira-42":
+                    offsets = [-60, -5];
+                case "daemae":
+                    offsets = [-50, -60];
+                case "st4r-fever":
+                    offsets = [-43, -40];
+                case "bing-chillin":
+                    offsets = [-15, -30];
+                case "pig-ful":
+                    offsets = [-30, -20];
+                case "beer-n-cider":
+                    offsets = [-30, -20];
+            }
+            x = originX + offsets[0];
+            y = originY + offsets[1];
+        }
+
+        animation.play(anim);
     }
 }

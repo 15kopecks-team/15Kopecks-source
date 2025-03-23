@@ -2,7 +2,7 @@
 <TextureAtlas imagePath="cassete.png">
 	<!-- Created with Adobe Animate version 21.0.5.40714 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="cassate_idle0000" x="1" y="1" width="188" height="131"/>
+	<SubTexture name="cassete_idle0000" x="1" y="1" width="188" height="131"/>
 	<SubTexture name="cassete_loop0000" x="190" y="1" width="297" height="228"/>
 	<SubTexture name="cassete_loop0001" x="190" y="1" width="297" height="228"/>
 	<SubTexture name="cassete_loop0002" x="190" y="1" width="297" height="228"/>

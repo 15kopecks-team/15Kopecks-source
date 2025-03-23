@@ -221,6 +221,7 @@ class KopeckMenuItem extends FlxSprite
 
     function playOutAnim():Void
     {
+        // Im sorry that i didn't use normal animation offsets, for me this way is more comfortable.
         var offsets:Array<Float> = [0, 0];
         switch (name)
         {
