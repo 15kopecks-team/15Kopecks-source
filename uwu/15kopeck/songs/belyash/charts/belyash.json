@@ -4460,8 +4460,10 @@
 		],
 		"gfVersion": "gf",
 		"song": "belyash",
+		"arrowSkin": "noteSkins/NOTE_assets",
 		"needsVoices": true,
 		"stage": "15kopeeck",
+		"oppArrowSkin": "",
 		"bpm": 178,
 		"speed": 2.9
 	}

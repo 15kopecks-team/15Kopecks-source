@@ -8029,8 +8029,10 @@
 		],
 		"player2": "P1G",
 		"song": "pig-ful",
+		"arrowSkin": "noteSkins/NOTE_assets",
 		"needsVoices": true,
 		"stage": "street",
+		"oppArrowSkin": "",
 		"speed": 2.9,
 		"bpm": 163
 	}
