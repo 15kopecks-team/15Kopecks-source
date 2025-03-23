@@ -81,8 +81,6 @@ function onStepHit()
         setProperty('iconP1.visible', false) 
         setProperty('iconP2.visible', false) 
         setProperty('healthBar.visible', false) 
-        setProperty('showRating', false);
-       setProperty('showComboNum', false);
        setProperty('healthBarBG.visible', false) 
         end
     if curStep == 769 or curStep == 884 or curStep == 888 or curStep == 880 or curStep == 892 or curStep == 899 then
@@ -99,9 +97,7 @@ function onStepHit()
     setProperty('scoreTxt.visible', true) 
     setProperty('iconP1.visible', true) 
     setProperty('iconP2.visible', true) 
-    setProperty('healthBar.visible', true) 
-    setProperty('showRating', true);
-   setProperty('showComboNum', true);
+    setProperty('healthBar.visible', true)
    setProperty('healthBarBG.visible', true) 
     end
 end

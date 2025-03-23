@@ -1,7 +1,4 @@
 local active = 0
-function onCreate()
-    setProperty('showComboNum', false);
-end
 function onUpdate()
     if active == 1 then
         triggerEvent("Set Camera Zoom", 0.4)
