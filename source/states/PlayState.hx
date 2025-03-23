@@ -29,6 +29,7 @@ import states.StoryMenuState;
 import states.FreeplayState;
 import states.editors.ChartingState;
 import states.editors.CharacterEditorState;
+import states.songSelect.KopeckSongSelect;
 
 import substates.PauseSubState;
 import substates.GameOverSubstate;

@@ -7,7 +7,7 @@ import flixel.FlxObject;
 import flixel.FlxSubState;
 
 import states.StoryMenuState;
-import states.KopeckSongSelect;
+import states.songSelect.KopeckSongSelect;
 
 class GameOverSubstate extends MusicBeatSubstate
 {

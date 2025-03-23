@@ -9,7 +9,7 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.util.FlxStringUtil;
 
 import states.StoryMenuState;
-import states.KopeckSongSelect;
+import states.songSelect.KopeckSongSelect;
 import options.OptionsState;
 
 class PauseSubState extends MusicBeatSubstate

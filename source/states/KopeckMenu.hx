@@ -11,6 +11,7 @@ import options.OptionsState;
 #if DISCORD_ALLOWED
 import backend.Discord.DiscordClient;
 #end
+import states.songSelect.KopeckSongSelect;
 
 import sys.io.Process;
 import sys.FileSystem;

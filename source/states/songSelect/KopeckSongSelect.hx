@@ -1,4 +1,4 @@
-package states;
+package states.songSelect;
 
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -9,8 +9,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 #if DISCORD_ALLOWED
 import backend.Discord.DiscordClient;
 #end
-import backend.Highscore;
-import backend.Song;
+import states.songSelect.SelectedSongSubstate;
 
 class KopeckSongSelect extends MusicBeatState
 {
@@ -43,6 +42,10 @@ class KopeckSongSelect extends MusicBeatState
 	private var cameraFollow:FlxObject;
 
     var busy:Bool = false;
+
+    public var selectedSong:String;
+    var cover:FlxSprite;
+    var gradient:FlxSprite;
 
 	override function create()
 	{
@@ -90,21 +93,29 @@ class KopeckSongSelect extends MusicBeatState
         busy = true;
     }
 
+    override function closeSubState()
+    {
+        super.closeSubState();
+
+        objects.forEach(function(item:KopeckSongObject) item.blocked = false);
+        busy = false;
+    }
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
+        if (busy) return;
+
         cameraFollow.x = (FlxG.width / 2.5 + FlxG.mouse.gameX / (bg.width / FlxG.width * 2)) * FlxG.camera.zoom;
 		cameraFollow.y = (FlxG.height / 2.5 + FlxG.mouse.gameY / (bg.height / FlxG.height * 2)) * FlxG.camera.zoom;
-
-        if (busy) return;
 
         if (controls.BACK)
         {
             FlxG.sound.play(Paths.sound('cancelMenu'), 0.7);
             FlxG.switchState(new KopeckMenu());
         }
-	}
+    }
 }
 
 class KopeckSongObject extends FlxSprite
@@ -201,36 +212,9 @@ class KopeckSongObject extends FlxSprite
 
         new FlxTimer().start(1, function(tmr:FlxTimer)
         {
-            startSong();
+            SelectedSongSubstate.songName = songName;
+            FlxG.state.openSubState(new SelectedSongSubstate());
         });
-    }
-
-    function startSong():Void
-    {
-        var songLowercase:String = Paths.formatToSongPath(songName);
-		var poop:String = songLowercase;
-		trace(poop);
-        try
-        {
-            PlayState.SONG = Song.loadFromJson(poop, songLowercase);
-            PlayState.songPath = poop + "/charts/"+ songLowercase;
-            trace(PlayState.songPath);
-            PlayState.isStoryMode = false;
-            PlayState.storyDifficulty = 1;
-        }
-        catch(e:Dynamic)
-        {
-            trace('ERROR! $e');
-
-            var errorStr:String = e.toString();
-            if(errorStr.startsWith('[file_contents,assets/data/')) errorStr = 'Missing file: ' + errorStr.substring(34, errorStr.length-1); //Missing chart
-
-            trace('ERROR WHILE LOADING CHART: $errorStr');
-
-            FlxG.sound.play(Paths.sound('cancelMenu'));
-            return;
-        }
-        LoadingState.loadAndSwitchState(new PlayState());
     }
 
     function playAnim(anim:String):Void
