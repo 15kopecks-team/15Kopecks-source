@@ -110,6 +110,9 @@
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
 
+	<!--Mobile shit-->
+	<haxelib name="extension-androidtools" if="android"/>
+
 	<!-- Disable Discord IO Thread -->
 	<haxedef name="DISCORD_DISABLE_IO_THREAD" if="hxdiscord_rpc" />
 	<haxedef name="NO_PRECOMPILED_HEADERS" if="linux" />
@@ -166,6 +169,9 @@
 	<haxeflag name="--macro" value="include('my.pack')" />
 
 	<!-- _________________________________ Custom _______________________________ -->
+
+	<!--  Exclude armv7 architecture for non-final mobile builds.  -->
+	<architecture name="armv64" exclude="armv7" unless="mobile final"/>
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 

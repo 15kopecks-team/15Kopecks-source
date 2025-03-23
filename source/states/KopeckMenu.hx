@@ -26,8 +26,6 @@ class KopeckMenu extends MusicBeatState
 
     private var buttons:FlxTypedGroup<KopeckMenuItem>;
 
-    var busy:Bool = false;
-
     override function create() {
         if(FlxG.sound.music == null) {
             FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic), 0);
@@ -53,7 +51,7 @@ class KopeckMenu extends MusicBeatState
         for (i in 0...buttonNames.length)
         {
             final menuItem:KopeckMenuItem = new KopeckMenuItem(buttonPositions[i][0], buttonPositions[i][1], buttonNames[i], buttonTargetStates[i]);
-            menuItem.onPress.add(pressedButton);
+            menuItem.blockButtons.add(blockButtons);
             menuItem.updateHitbox();
 
             buttons.add(menuItem);
@@ -63,17 +61,9 @@ class KopeckMenu extends MusicBeatState
         super.create();
     }
 
-    function pressedButton():Void
+    function blockButtons():Void
     {
-        buttons.forEach(function(item:KopeckMenuItem) item.name == 'Credits' ? item.blocked = false : item.blocked = true);
-        busy = false; 
-    }
-
-    override function update(elapsed:Float)
-    {
-        super.update(elapsed);
-
-        if (busy) return;
+        buttons.forEach(function(item:KopeckMenuItem) item.blocked = true);
     }
 }
 
@@ -98,6 +88,8 @@ class KopeckMenuItem extends FlxSprite
     public var onDeselect(default, null):FlxSignal = new FlxSignal();
 
     public var onPress(default, null):FlxSignal = new FlxSignal();
+
+    public var blockButtons(default, null):FlxSignal = new FlxSignal();
 
     public function new(xPos:Float, yPos:Float, name:String, targetState:FlxState)
     {
@@ -189,11 +181,14 @@ class KopeckMenuItem extends FlxSprite
         FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
         playAnim("pressed");
 
+        if (name != "Credits") blockButtons.dispatch();
+
         new FlxTimer().start(1, function(tmr:FlxTimer)
         {
             if(name != "Credits")
                 FlxG.switchState(targetState);
-            else{
+            else
+            {
                 openHTML();
             }
                 
