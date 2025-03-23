@@ -56,8 +56,6 @@ class KopeckMenu extends MusicBeatState
             menuItem.onPress.add(pressedButton);
             menuItem.updateHitbox();
 
-            add(menuItem.theFakeHitbox);
-
             buttons.add(menuItem);
         }
         add(buttons);
