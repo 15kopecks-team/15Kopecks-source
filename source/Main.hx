@@ -64,7 +64,7 @@ class Main extends Sprite
 
 	public static var appConfig:SetupFile;
 
-	public static var discordKey:String = "1337805919152509030";
+	public static var discordKey:String = "1353829861663182958";
 	public static var discordImg:String = "logo";
 	public static var gpuCache:Bool = false;
 	// You can pretty much ignore everything from here on - your code should go in your states.
@@ -78,7 +78,7 @@ class Main extends Sprite
 					gpuCache: true,
 					showDevBuild: true,
 					showBorderInFPS: false,
-					discordKey: "1337805919152509030",
+					discordKey: "1353829861663182958",
 					discordImg: "logo"
 					} 
 			}
