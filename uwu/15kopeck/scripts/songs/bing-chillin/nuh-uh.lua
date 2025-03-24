@@ -83,10 +83,10 @@ function onStepHit()
        setProperty('healthBarBG.visible', false) 
         end
     if curStep == 769 or curStep == 884 or curStep == 888 or curStep == 880 or curStep == 892 or curStep == 899 then
-        fuck = false
+        triggerEvent('SetStrumsAlpha', 0);
     end
     if curStep == 1152 then
-    fuck = true
+        triggerEvent('SetStrumsAlpha', 1);
     end
 --Верни хуб
     if curStep == 1152 and hideHud == false then
@@ -107,7 +107,6 @@ removeLuaSprite("boom", true)
 removeLuaSprite("boom2", true)
     end
 end
-
 
 --[[function onTweenCompleted(tag, ?vars)
     if name == "blackR" then

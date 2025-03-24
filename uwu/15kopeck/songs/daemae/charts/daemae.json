@@ -5506,6 +5506,7 @@
 			]
 		],
 		"player2": "Pchelka",
+		"gameOverSound": "deathPICO/start",
 		"gameOverLoop": "deathPICO/loop",
 		"gameOverChar": "pico-gayOver",
 		"gameOverEnd": "deathPICO/Confirm",

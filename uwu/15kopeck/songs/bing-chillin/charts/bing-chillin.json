@@ -4244,6 +4244,7 @@
 			}
 		],
 		"gfVersion": "gf",
+		"gameOverSound": "deathNENE/start",
 		"gameOverLoop": "deathNENE/idle",
 		"gameOverChar": "15NENE-death",
 		"gameOverEnd": "deathNENE/Confirm",

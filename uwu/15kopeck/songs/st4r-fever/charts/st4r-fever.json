@@ -8532,7 +8532,7 @@
 		],
 		"gfVersion": "gf",
 		"song": "st4r-fever",
-		"gameOverLoop": "deathBF/idle",
+		"gameOverLoop": "deathBF/loop",
 		"gameOverEnd": "deathBF/confirm",
 		"arrowSkin": "noteSkins/NOTE_assets",
 		"needsVoices": true,

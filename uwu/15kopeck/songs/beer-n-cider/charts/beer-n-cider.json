@@ -8172,6 +8172,7 @@
 			]
 		],
 		"player2": "Leha15",
+		"gameOverSound": "deathFell/start",
 		"gameOverLoop": "deathFell/idle",
 		"gameOverChar": "fell15gayOver",
 		"gameOverEnd": "deathFell/confirm",

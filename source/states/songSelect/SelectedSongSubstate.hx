@@ -2,6 +2,7 @@ package states.songSelect;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import openfl.display.BlendMode;
 import backend.Highscore;
 import backend.Song;
 
@@ -37,6 +38,7 @@ class SelectedSongSubstate extends MusicBeatSubstate
         gradient.alpha = 0.00001;
         gradient.screenCenter();
         gradient.scrollFactor.set(0, 0);
+        gradient.blend = BlendMode.MULTIPLY;
         add(gradient);
 
         cover = new FlxSprite(coverStartingX, coverPos[1], Paths.image('menus/fr/covers/$songName'));
@@ -71,7 +73,7 @@ class SelectedSongSubstate extends MusicBeatSubstate
 
         FlxTween.tween(startButton, {y: FlxG.height * 0.6}, 0.2, {ease: FlxEase.sineOut});
         FlxTween.tween(songNameDisplay, {y: FlxG.height * 0.28}, 0.2, {ease: FlxEase.sineOut});
-        FlxTween.tween(gradient, {alpha: 0.7}, 0.2, {ease: FlxEase.sineOut});
+        FlxTween.tween(gradient, {alpha: 1}, 0.2, {ease: FlxEase.sineOut});
         FlxTween.tween(cover, {x: coverPos[0]}, 0.25, {
             ease: FlxEase.sineOut,
             onComplete: function(tween:FlxTween) busy = false
@@ -83,6 +85,8 @@ class SelectedSongSubstate extends MusicBeatSubstate
         super.update(elapsed);
 
         if (busy) return;
+
+        startButton.alpha = FlxMath.lerp(startButton.alpha, FlxG.mouse.overlaps(startButton) ? 0.2 : 1, elapsed * 10);
 
         if (FlxG.mouse.overlaps(startButton) && FlxG.mouse.justPressed) 
         {
@@ -133,6 +137,7 @@ class SelectedSongSubstate extends MusicBeatSubstate
 
             trace('ERROR WHILE LOADING CHART: $errorStr');
 
+            FlxG.sound.music.stop();
             FlxG.sound.play(Paths.sound('cancelMenu'));
             return;
         }
