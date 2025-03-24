@@ -97,7 +97,7 @@ class FlxSoundTray extends Sprite
 		// Get sound preferences
 		if (FlxG.save.isBound)
 		{
-	            FlxG.sound.muted = FlxG.save.data.mute;
+	        FlxG.sound.muted = FlxG.save.data.mute;
 		    FlxG.sound.volume = FlxG.save.data.volume;
 		}
 	        #end
