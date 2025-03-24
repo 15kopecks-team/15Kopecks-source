@@ -14,6 +14,7 @@ function onCreatePost(){
   game.triggerEvent('Camera Follow Pos', 500, -1500);
   game.cameraSpeed = 0.2;
   game.camHUD.alpha = 0;
+  game.camZooming = false;
 }
 
 function onStepHit(){

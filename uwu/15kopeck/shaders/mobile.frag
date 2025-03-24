@@ -23,11 +23,11 @@ const float CCFrequency = 7.1950909;
 const float YFrequency = 12.0;
 const float IFrequency = 2.4;
 const float QFrequency = 1.2;
-const float NotchHalfWidth = 0.5;
+const float NotchHalfWidth = 1.0;
 const float ScanTime = 52.6;
 const float MaxC = 0.0001;
 const vec4 MinC = vec4(0.0001);
-const vec4 CRange = vec4(100);
+const vec4 CRange = vec4(10000);
 
 vec4 CompositeSample(vec2 UV) {
 	vec2 InverseRes = 1.0 / iResolution.xy;

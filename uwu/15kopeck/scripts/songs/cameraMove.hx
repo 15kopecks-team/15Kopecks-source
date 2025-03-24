@@ -4,6 +4,12 @@ var moveCam:Bool = true;
 function onCreatePost(){
     if(game.songName == "blaster")
         moveCam = false;
+
+    // if(game.curStage != 'action' || game.curStage != 'most')
+    //     game.camZooming = true;
+    // game.textArrayKvartira = ['', 'здарова']
+
+    // game.beatInterval = 999999999999999999999;
 }
 
 function onMoveCamera(focus:String)
