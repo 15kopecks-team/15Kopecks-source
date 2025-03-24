@@ -87,7 +87,15 @@ class SelectedSongSubstate extends MusicBeatSubstate
         if (FlxG.mouse.overlaps(startButton) && FlxG.mouse.justPressed) 
         {
             busy = true;
-            startSong();
+
+            FlxG.camera.fade(FlxColor.BLACK, 0.2);
+            FlxTween.tween(startButton, {y: FlxG.height * 2}, 0.2, {ease: FlxEase.sineOut});
+            FlxTween.tween(songNameDisplay, {y: -FlxG.height}, 0.2, {ease: FlxEase.sineOut});
+            FlxTween.tween(gradient, {alpha: 0.00001}, 0.2, {ease: FlxEase.sineOut});
+            FlxTween.tween(cover, {x: coverStartingX}, 0.25, {
+                ease: FlxEase.sineOut,
+                onComplete: function(tween:FlxTween) startSong()
+            });
         }
 
         if (controls.BACK) 

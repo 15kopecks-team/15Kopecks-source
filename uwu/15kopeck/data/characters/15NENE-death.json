@@ -1,37 +1,37 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
 				270,
 				-67
 			],
-			"anim": "deathLoop",
+			"loop": true,
 			"fps": 24,
-			"name": "gameover_nene_loop",
-			"indices": []
+			"anim": "deathLoop",
+			"indices": [],
+			"name": "gameover_nene_loop"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				533,
 				2
 			],
-			"anim": "deathConfirm",
+			"loop": false,
 			"fps": 24,
-			"name": "gameover_nene_pressed",
-			"indices": []
+			"anim": "deathConfirm",
+			"indices": [],
+			"name": "gameover_nene_pressed"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				260,
-				672
+				263,
+				738
 			],
-			"anim": "firstDeath",
+			"loop": false,
 			"fps": 24,
-			"name": "gameover_nene_start",
-			"indices": []
+			"anim": "firstDeath",
+			"indices": [],
+			"name": "gameover_nene_start"
 		}
 	],
 	"vocals_file": "",

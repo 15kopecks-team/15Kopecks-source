@@ -1,5 +1,4 @@
 --Пошло говно
-local fuck = true
 function onCreate()
 setProperty("skipCountdown", true)
 --Съёмка видео запрещена. Камеру вырубай нахуй
@@ -106,19 +105,6 @@ function onTimerCompleted(tag, loops, loopsLeft)
     if tag == 'a' then
 removeLuaSprite("boom", true)
 removeLuaSprite("boom2", true)
-    end
-end
-function onUpdate(elapsed)
---Приколы со стрелками оппонента
-    if fuck == true then
-    for i = 0,3 do
-        setPropertyFromGroup('strumLineNotes', i, 'alpha', 0.5)
-        end
---Приколов больше не будет
-    elseif fuck == false then
-        for i = 0,3 do
-            setPropertyFromGroup('strumLineNotes', i, 'alpha', 0)
-            end
     end
 end
 

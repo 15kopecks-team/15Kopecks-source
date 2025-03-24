@@ -41,8 +41,6 @@ class InitState extends MusicBeatState
 
         MusicBeatState.switchState(new KopeckMenu());
 
-        
-
         super.create();
         
         initLuaShader("mobile");

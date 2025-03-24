@@ -1,0 +1,58 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				696,
+				140
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "retry_end",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				189,
+				376
+			],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "retry_start",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [
+				598,
+				208
+			],
+			"anim": "deathLoop",
+			"fps": 24,
+			"name": "retry_loop",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/vitya_GAMEOVER",
+	"position": [
+		70,
+		260
+	],
+	"healthicon": "vitya",
+	"flip_x": true,
+	"healthbar_colors": [
+		248,
+		132,
+		63
+	],
+	"camera_position": [
+		-100,
+		-100
+	],
+	"sing_duration": 5.99999999999999,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

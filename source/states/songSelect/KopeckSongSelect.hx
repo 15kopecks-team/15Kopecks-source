@@ -49,6 +49,8 @@ class KopeckSongSelect extends MusicBeatState
 
 	override function create()
 	{
+        FlxG.mouse.visible = true;
+
         #if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -239,11 +241,13 @@ class KopeckSongObject extends FlxSprite
                 case "kvartira-42":
                     offsets = [-60, -5];
                 case "daemae":
-                    offsets = [-50, -60];
+                    if (anim == "loop") offsets = [-50, -60];
+                    else if (anim == "start") offsets = [-50, -68];
                 case "st4r-fever":
                     offsets = [-43, -40];
                 case "bing-chillin":
-                    offsets = [-15, -30];
+                    if (anim == "loop") offsets = [-15, -30];
+                    else if (anim == "start") offsets = [-15, -47];
                 case "pig-ful":
                     offsets = [-30, -20];
                 case "beer-n-cider":
