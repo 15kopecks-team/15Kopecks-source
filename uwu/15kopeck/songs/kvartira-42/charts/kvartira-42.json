@@ -11118,7 +11118,7 @@
 		],
 		"player2": "Nikku15",
 		"song": "kvartira 42",
-		"gameOverLoop": "deathBF/loop",
+		"gameOverLoop": "kvartira/loop",
 		"gameOverEnd": "deathBF/confirm",
 		"arrowSkin": "noteSkins/NOTE_assets",
 		"needsVoices": true,
