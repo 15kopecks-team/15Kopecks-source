@@ -2,7 +2,6 @@ var shader:Dynamic;
 var shader2:Dynamic;
 
 function onCreatePost(){
-  
   game.initLuaShader("mobile");
   game.initLuaShader("contr");
     

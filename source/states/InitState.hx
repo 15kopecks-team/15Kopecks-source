@@ -1,8 +1,8 @@
 package states;
 
 import backend.cppApi.CppApi;
-import states.TitleState;
 import backend.Highscore;
+import states.TitleState;
 
 import flixel.input.keyboard.FlxKey;
 
@@ -10,14 +10,9 @@ import openfl.filters.ShaderFilter;
 
 class InitState extends MusicBeatState
 {
-    /**
-        
-    **/
-
     public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
 	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
 	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
-
 
     public static var menuMusic:String = 'menu';
     public static var pauseMusic:String = 'pause';
@@ -42,11 +37,9 @@ class InitState extends MusicBeatState
         MusicBeatState.switchState(new KopeckMenu());
 
         super.create();
-        
+
         initLuaShader("mobile");
-
         shader = createRuntimeShader("mobile");
-
         FlxG.game.setFilters([new ShaderFilter(shader)]);
     }
 }
