@@ -72,7 +72,7 @@ class Main extends Sprite
 
 	public static var appConfig:SetupFile;
 
-	public static var discordKey:String = "1337805919152509030";
+	public static var discordKey:String = "1353829861663182958";
 	public static var discordImg:String = "logo";
 	public static var gpuCache:Bool = false;
 	// You can pretty much ignore everything from here on - your code should go in your states.
@@ -86,7 +86,7 @@ class Main extends Sprite
 					gpuCache: true,
 					showDevBuild: true,
 					showBorderInFPS: false,
-					discordKey: "1337805919152509030",
+					discordKey: "1353829861663182958",
 					discordImg: "logo"
 					} 
 			}
@@ -150,7 +150,6 @@ class Main extends Sprite
 		#if LUA_ALLOWED Lua.set_callbacks_function(cpp.Callable.fromStaticFunction(psychlua.CallbackHandler.call)); #end
 		Controls.instance = new Controls();
 		ClientPrefs.loadDefaultKeys();
-		#if ACHIEVEMENTS_ALLOWED Achievements.load(); #end
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
 		#if !mobile

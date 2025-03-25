@@ -1,37 +1,37 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				-30,
-				268
-			],
-			"indices": [],
-			"fps": 24,
-			"anim": "deathConfirm",
 			"loop": false,
-			"name": "gameover_end"
+			"offsets": [
+				-13,
+				267
+			],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "gameover_end",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				10,
 				252
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "firstDeath",
-			"loop": false,
-			"name": "gameover_start"
+			"fps": 24,
+			"name": "gameover_start",
+			"indices": []
 		},
 		{
+			"loop": true,
 			"offsets": [
 				-12,
 				258
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "deathLoop",
-			"loop": false,
-			"name": "gameover_loop"
+			"fps": 24,
+			"name": "gameover_loop",
+			"indices": []
 		}
 	],
 	"vocals_file": "",

@@ -4,7 +4,7 @@ import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.input.gamepad.FlxGamepadInputID;
 
-import states.TitleState;
+import states.InitState;
 
 // Add a variable here and it will get automatically saved
 @:structInit class SaveVariables {
@@ -153,7 +153,6 @@ class ClientPrefs {
 		for (key in Reflect.fields(data))
 			Reflect.setField(FlxG.save.data, key, Reflect.field(data, key));
 
-		#if ACHIEVEMENTS_ALLOWED Achievements.save(); #end
 		FlxG.save.flush();
 
 		//Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
@@ -166,8 +165,6 @@ class ClientPrefs {
 	}
 
 	public static function loadPrefs() {
-		#if ACHIEVEMENTS_ALLOWED Achievements.load(); #end
-
 		for (key in Reflect.fields(data))
 			if (key != 'gameplaySettings' && Reflect.hasField(FlxG.save.data, key))
 				Reflect.setField(data, key, Reflect.field(FlxG.save.data, key));
@@ -241,15 +238,15 @@ class ClientPrefs {
 
 	public static function reloadVolumeKeys()
 	{
-		TitleState.muteKeys = keyBinds.get('volume_mute').copy();
-		TitleState.volumeDownKeys = keyBinds.get('volume_down').copy();
-		TitleState.volumeUpKeys = keyBinds.get('volume_up').copy();
+		InitState.muteKeys = keyBinds.get('volume_mute').copy();
+		InitState.volumeDownKeys = keyBinds.get('volume_down').copy();
+		InitState.volumeUpKeys = keyBinds.get('volume_up').copy();
 		toggleVolumeKeys(true);
 	}
 	public static function toggleVolumeKeys(?turnOn:Bool = true)
 	{
-		FlxG.sound.muteKeys = turnOn ? TitleState.muteKeys : [];
-		FlxG.sound.volumeDownKeys = turnOn ? TitleState.volumeDownKeys : [];
-		FlxG.sound.volumeUpKeys = turnOn ? TitleState.volumeUpKeys : [];
+		FlxG.sound.muteKeys = turnOn ? InitState.muteKeys : [];
+		FlxG.sound.volumeDownKeys = turnOn ? InitState.volumeDownKeys : [];
+		FlxG.sound.volumeUpKeys = turnOn ? InitState.volumeUpKeys : [];
 	}
 }

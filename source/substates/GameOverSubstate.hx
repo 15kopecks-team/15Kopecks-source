@@ -6,7 +6,6 @@ import objects.Character;
 import flixel.FlxObject;
 import flixel.FlxSubState;
 
-import states.StoryMenuState;
 import states.songSelect.KopeckSongSelect;
 
 class GameOverSubstate extends MusicBeatSubstate
@@ -22,6 +21,9 @@ class GameOverSubstate extends MusicBeatSubstate
 	public static var deathSoundName:String = 'fnf_loss_sfx';
 	public static var loopSoundName:String = 'gameOver';
 	public static var endSoundName:String = 'gameOverEnd';
+
+	var gunCockSound:FlxSound;
+	var pigfulConfirmMusic:FlxSound;
 
 	public static var instance:GameOverSubstate;
 
@@ -54,7 +56,16 @@ class GameOverSubstate extends MusicBeatSubstate
 		boyfriend.y += boyfriend.positionArray[1] - PlayState.instance.boyfriend.positionArray[1];
 		add(boyfriend);
 
-		FlxG.sound.play(Paths.sound(deathSoundName));
+		switch (characterName)
+		{
+			case "vitya-gameover":
+				new FlxTimer().start(1.5, function(tmr:FlxTimer) FlxG.sound.play(Paths.sound(deathSoundName)));
+			case "pico-gayOver":
+				new FlxTimer().start(0.5, function(tmr:FlxTimer) FlxG.sound.play(Paths.sound(deathSoundName)));
+			default:
+				FlxG.sound.play(Paths.sound(deathSoundName));
+		}
+
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
 
@@ -91,11 +102,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.seenCutscene = false;
 			PlayState.chartingMode = false;
 
-			Mods.loadTopMod();
-			if (PlayState.isStoryMode)
-				MusicBeatState.switchState(new StoryMenuState());
-			else
-				MusicBeatState.switchState(new KopeckSongSelect());
+			MusicBeatState.switchState(new KopeckSongSelect());
 
 			FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
 			PlayState.instance.callOnScripts('onGameOverConfirm', [false]);
@@ -149,6 +156,12 @@ class GameOverSubstate extends MusicBeatSubstate
 	function coolStartDeath(?volume:Float = 1):Void
 	{
 		FlxG.sound.playMusic(Paths.music(loopSoundName), volume);
+		if (characterName == "pico-gayOver") 
+		{
+			gunCockSound = new FlxSound();
+			gunCockSound.loadEmbedded(Paths.music("deathPICO/gunloop"), true);
+			gunCockSound.play();
+		}
 	}
 
 	function endBullshit():Void
@@ -156,18 +169,36 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			boyfriend.playAnim('deathConfirm', true);
+
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music(endSoundName));
-			new FlxTimer().start(0.7, function(tmr:FlxTimer)
+			if (characterName == "pico-gayOver") gunCockSound.stop();
+
+			switch (characterName)
 			{
-				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
-				{
-					MusicBeatState.resetState();
-				});
-			});
-			PlayState.instance.callOnScripts('onGameOverConfirm', [true]);
+				case "HUNTER_GameOver":
+					new FlxTimer().start(0.7, function(tmr:FlxTimer) bullshit());
+
+					pigfulConfirmMusic = new FlxSound();
+					pigfulConfirmMusic.loadEmbedded(Paths.music("deathHunter/confirmmusic"), false);
+					pigfulConfirmMusic.play();
+				default:
+					bullshit();
+			}
 		}
+	}
+
+	function bullshit():Void
+	{
+		boyfriend.playAnim('deathConfirm', true);
+		new FlxTimer().start(0.7, function(tmr:FlxTimer)
+		{
+			FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
+			{
+				MusicBeatState.resetState();
+			});
+		});
+		PlayState.instance.callOnScripts('onGameOverConfirm', [true]);
 	}
 
 	override function destroy()

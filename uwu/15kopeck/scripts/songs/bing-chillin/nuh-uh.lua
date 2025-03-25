@@ -1,5 +1,4 @@
 --Пошло говно
-local fuck = true
 function onCreate()
 setProperty("skipCountdown", true)
 --Съёмка видео запрещена. Камеру вырубай нахуй
@@ -84,10 +83,10 @@ function onStepHit()
        setProperty('healthBarBG.visible', false) 
         end
     if curStep == 769 or curStep == 884 or curStep == 888 or curStep == 880 or curStep == 892 or curStep == 899 then
-        fuck = false
+        triggerEvent('SetStrumsAlpha', 0);
     end
     if curStep == 1152 then
-    fuck = true
+        triggerEvent('SetStrumsAlpha', 1);
     end
 --Верни хуб
     if curStep == 1152 and hideHud == false then
@@ -108,20 +107,6 @@ removeLuaSprite("boom", true)
 removeLuaSprite("boom2", true)
     end
 end
-function onUpdate(elapsed)
---Приколы со стрелками оппонента
-    if fuck == true then
-    for i = 0,3 do
-        setPropertyFromGroup('strumLineNotes', i, 'alpha', 0.5)
-        end
---Приколов больше не будет
-    elseif fuck == false then
-        for i = 0,3 do
-            setPropertyFromGroup('strumLineNotes', i, 'alpha', 0)
-            end
-    end
-end
-
 
 --[[function onTweenCompleted(tag, ?vars)
     if name == "blackR" then

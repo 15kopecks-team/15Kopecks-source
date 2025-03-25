@@ -27,7 +27,7 @@ const float NotchHalfWidth = 1.0;
 const float ScanTime = 52.6;
 const float MaxC = 0.0001;
 const vec4 MinC = vec4(0.0001);
-const vec4 CRange = vec4(100);
+const vec4 CRange = vec4(10000);
 
 vec4 CompositeSample(vec2 UV) {
 	vec2 InverseRes = 1.0 / iResolution.xy;

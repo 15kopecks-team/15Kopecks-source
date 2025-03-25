@@ -11,6 +11,8 @@ import options.OptionsState;
 #if DISCORD_ALLOWED
 import backend.Discord.DiscordClient;
 #end
+import states.ModsMenuState;
+import states.editors.MasterEditorMenu;
 import states.songSelect.KopeckSongSelect;
 
 import sys.io.Process;
@@ -18,7 +20,7 @@ import sys.FileSystem;
 
 class KopeckMenu extends MusicBeatState
 {
-    var justStarted:Bool = true;
+    static var justStarted:Bool = true;
 
     final buttonNames:Array<String> = ["Credits", "Play", "Settings"];
     final buttonPositions:Array<Array<Float>> = [[FlxG.width * 0.6, FlxG.height * 0.5], [FlxG.width * 0.325, FlxG.height * 0.075], [FlxG.width * 0.1, FlxG.height * 0.4]];
@@ -27,6 +29,8 @@ class KopeckMenu extends MusicBeatState
     private var buttons:FlxTypedGroup<KopeckMenuItem>;
 
     override function create() {
+        FlxG.mouse.visible = true;
+
         if(FlxG.sound.music == null) {
             FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic), 0);
         }
@@ -64,6 +68,22 @@ class KopeckMenu extends MusicBeatState
     function blockButtons():Void
     {
         buttons.forEach(function(item:KopeckMenuItem) item.blocked = true);
+    }
+
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        #if debug
+        if (controls.justPressed('debug_1'))
+        {
+            MusicBeatState.switchState(new MasterEditorMenu());
+        }
+        else if (controls.justPressed('debug_2'))
+        {
+            MusicBeatState.switchState(new ModsMenuState());
+        }
+        #end
     }
 }
 

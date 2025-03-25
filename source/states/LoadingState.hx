@@ -14,6 +14,8 @@ import backend.StageData;
 
 import haxe.io.Path;
 
+import sys.thread.Thread;
+
 class LoadingState extends MusicBeatState
 {
 	inline static var MIN_TIME = 1.0;
@@ -144,7 +146,10 @@ class LoadingState extends MusicBeatState
 	
 	inline static public function loadAndSwitchState(target:FlxState, stopMusic = false)
 	{
-		MusicBeatState.switchState(getNextState(target, stopMusic));
+		Thread.create(() ->
+		{
+			MusicBeatState.switchState(getNextState(target, stopMusic));
+		});
 	}
 	
 	static function getNextState(target:FlxState, stopMusic = false):FlxState

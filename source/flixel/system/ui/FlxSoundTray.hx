@@ -92,6 +92,15 @@ class FlxSoundTray extends Sprite
 		FlxG.signals.gameResized.add(function (w, h) {
 			_yPosScreen = 0;
 		});
+
+		// #if FLX_SAVE
+		// // Get sound preferences
+		// if (FlxG.save.isBound)
+		// {
+	    //     FlxG.sound.muted = FlxG.save.data.mute;
+		//     FlxG.sound.volume = FlxG.save.data.volume;
+		// }
+	    //     #end
 	}
 
 	/**

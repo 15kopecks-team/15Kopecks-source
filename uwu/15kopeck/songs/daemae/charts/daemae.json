@@ -5506,9 +5506,10 @@
 			]
 		],
 		"player2": "Pchelka",
+		"gameOverSound": "deathPICO/start",
 		"gameOverLoop": "deathPICO/loop",
 		"gameOverChar": "pico-gayOver",
-		"gameOverEnd": "deathPICO/confirm",
+		"gameOverEnd": "deathPICO/Confirm",
 		"song": "daemae",
 		"stage": "most",
 		"arrowSkin": "noteSkins/NOTE_assets",

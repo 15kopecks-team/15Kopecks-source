@@ -2,6 +2,8 @@ package options;
 
 import objects.Character;
 
+import openfl.filters.ShaderFilter;
+
 class GraphicsSettingsSubState extends BaseOptionsMenu
 {
 	var antialiasingOption:Int;
@@ -37,6 +39,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			"If unchecked, disables shaders.\nIt's used for some visual effects, and also CPU intensive for weaker PCs.", //Description
 			'shaders',
 			'bool');
+		option.onChange = onChangeShaders;
 		addOption(option);
 
 		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
@@ -66,6 +69,20 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			if(sprite != null && (sprite is FlxSprite) && !(sprite is FlxText)) {
 				sprite.antialiasing = ClientPrefs.data.antialiasing;
 			}
+		}
+	}
+
+	function onChangeShaders()
+	{
+		if (ClientPrefs.data.shaders)
+		{
+			initLuaShader("mobile");
+            var shader:Dynamic = createRuntimeShader("mobile");
+            FlxG.game.setFilters([new ShaderFilter(shader)]);
+		}
+		else
+		{
+			FlxG.game.setFilters([]);
 		}
 	}
 

@@ -22,11 +22,6 @@ import openfl.utils.Assets as OpenFlAssets;
 import openfl.events.KeyboardEvent;
 import haxe.Json;
 
-import cutscenes.CutsceneHandler;
-import cutscenes.DialogueBoxPsych;
-
-import states.StoryMenuState;
-import states.FreeplayState;
 import states.editors.ChartingState;
 import states.editors.CharacterEditorState;
 import states.songSelect.KopeckSongSelect;
@@ -348,12 +343,7 @@ class PlayState extends MusicBeatState
 		#if DISCORD_ALLOWED
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		storyDifficultyText = Difficulty.getString();
-
-		if (isStoryMode)
-			detailsText = "Story Mode: " + WeekData.getCurrentWeek().weekName;
-		else
-			detailsText = "Playing";
-
+		detailsText = "Playing";
 		// String for when the game is paused
 		detailsPausedText = "Paused";
 		#end
@@ -893,39 +883,6 @@ class PlayState extends MusicBeatState
 			startCountdown();
 	}
 
-	var dialogueCount:Int = 0;
-	public var psychDialogue:DialogueBoxPsych;
-	//You don't have to add a song, just saying. You can just do "startDialogue(DialogueBoxPsych.parseDialogue(Paths.json(songName + '/dialogue')))" and it should load dialogue.json
-	public function startDialogue(dialogueFile:DialogueFile, ?song:String = null):Void
-	{
-		// TO DO: Make this more flexible, maybe?
-		if(psychDialogue != null) return;
-
-		if(dialogueFile.dialogue.length > 0) {
-			inCutscene = true;
-			psychDialogue = new DialogueBoxPsych(dialogueFile, song);
-			psychDialogue.scrollFactor.set();
-			if(endingSong) {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					endSong();
-				}
-			} else {
-				psychDialogue.finishThing = function() {
-					psychDialogue = null;
-					startCountdown();
-				}
-			}
-			psychDialogue.nextDialogueThing = startNextDialogue;
-			psychDialogue.skipDialogueThing = skipDialogue;
-			psychDialogue.cameras = [camHUD];
-			add(psychDialogue);
-		} else {
-			FlxG.log.warn('Your dialogue file is badly formatted!');
-			startAndEnd();
-		}
-	}
-
 	var startTimer:FlxTimer;
 	var finishTimer:FlxTimer = null;
 
@@ -983,7 +940,7 @@ class PlayState extends MusicBeatState
 			setOnScripts('startedCountdown', true);
 			callOnScripts('onCountdownStarted', null);
 
-			var swagCounter:Int = 0;
+			var swagCounter:Int = (skipCountdown) ? 5 : 0;
 			if (startOnTime > 0) {
 				clearNotesBefore(startOnTime);
 				setSongTime(startOnTime - 350);
@@ -1015,19 +972,28 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
-						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
+						if (!skipCountdown) FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
 					case 1:
-						countdownReady = createCountdownSprite(introAlts[0], antialias);
-						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
+						if (!skipCountdown)
+						{
+							countdownReady = createCountdownSprite(introAlts[0], antialias);
+							FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
+						}
 						tick = TWO;
 					case 2:
-						countdownSet = createCountdownSprite(introAlts[1], antialias);
-						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
+						if (!skipCountdown)
+						{
+							countdownSet = createCountdownSprite(introAlts[1], antialias);
+							FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
+						}
 						tick = ONE;
 					case 3:
-						countdownGo = createCountdownSprite(introAlts[2], antialias);
-						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
+						if (!skipCountdown)
+						{
+							countdownGo = createCountdownSprite(introAlts[2], antialias);
+							FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
+						}
 						tick = GO;
 					case 4:
 						tick = START;
@@ -1200,15 +1166,6 @@ class PlayState extends MusicBeatState
 		vocals.play();
 		opponentVocals.play();
 		Conductor.songPosition = time;
-	}
-
-	public function startNextDialogue() {
-		dialogueCount++;
-		callOnScripts('onNextDialogue', [dialogueCount]);
-	}
-
-	public function skipDialogue() {
-		callOnScripts('onSkipDialogue', [dialogueCount]);
 	}
 
 	function startSong():Void
@@ -2328,11 +2285,6 @@ class PlayState extends MusicBeatState
 		deathCounter = 0;
 		seenCutscene = false;
 
-		#if ACHIEVEMENTS_ALLOWED
-		var weekNoMiss:String = WeekData.getWeekFileName() + '_nomiss';
-		checkForAchievement([weekNoMiss, 'ur_bad', 'ur_good', 'hype', 'two_keys', 'toastie', 'debugger']);
-		#end
-
 		var ret:Dynamic = callOnScripts('onEndSong', null, true);
 		if(ret != LuaUtils.Function_Stop && !transitioning)
 		{
@@ -2349,58 +2301,13 @@ class PlayState extends MusicBeatState
 				return false;
 			}
 
-			if (isStoryMode)
-			{
-				campaignScore += songScore;
-				campaignMisses += songMisses;
+			trace('WENT BACK TO FREEPLAY??');
+			Mods.loadTopMod();
+			#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
-				storyPlaylist.remove(storyPlaylist[0]);
-
-				if (storyPlaylist.length <= 0)
-				{
-					Mods.loadTopMod();
-					FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
-					#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
-
-					MusicBeatState.switchState(new StoryMenuState());
-
-					// if ()
-					if(!ClientPrefs.getGameplaySetting('practice') && !ClientPrefs.getGameplaySetting('botplay')) {
-						StoryMenuState.weekCompleted.set(WeekData.weeksList[storyWeek], true);
-						Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
-
-						FlxG.save.data.weekCompleted = StoryMenuState.weekCompleted;
-						FlxG.save.flush();
-					}
-					changedDifficulty = false;
-				}
-				else
-				{
-					var difficulty:String = Difficulty.getFilePath();
-
-					trace('LOADING NEXT SONG');
-					trace(Paths.formatToSongPath(PlayState.storyPlaylist[0]) + difficulty);
-
-					FlxTransitionableState.skipNextTransIn = true;
-					FlxTransitionableState.skipNextTransOut = true;
-					prevCamFollow = camFollow;
-
-					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0] + difficulty, PlayState.storyPlaylist[0]);
-					FlxG.sound.music.stop();
-
-					LoadingState.loadAndSwitchState(new PlayState());
-				}
-			}
-			else
-			{
-				trace('WENT BACK TO FREEPLAY??');
-				Mods.loadTopMod();
-				#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
-
-				MusicBeatState.switchState(new KopeckSongSelect());
-				FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
-				changedDifficulty = false;
-			}
+			MusicBeatState.switchState(new KopeckSongSelect());
+			FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
+			changedDifficulty = false;
 			transitioning = true;
 		}
 		return true;
@@ -2621,10 +2528,6 @@ class PlayState extends MusicBeatState
 
 			if (!holdArray.contains(true) || endingSong)
 				playerDance();
-
-			#if ACHIEVEMENTS_ALLOWED
-			else checkForAchievement(['oversinging']);
-			#end
 		}
 
 		// TO DO: Find a better way to handle controller inputs, this should work for now
@@ -3306,54 +3209,4 @@ class PlayState extends MusicBeatState
 		setOnScripts('ratingName', ratingName);
 		setOnScripts('ratingFC', ratingFC);
 	}
-
-	#if ACHIEVEMENTS_ALLOWED
-	private function checkForAchievement(achievesToCheck:Array<String> = null)
-	{
-		if(chartingMode) return;
-
-		var usedPractice:Bool = (ClientPrefs.getGameplaySetting('practice') || ClientPrefs.getGameplaySetting('botplay'));
-		if(cpuControlled) return;
-
-		for (name in achievesToCheck) {
-			if(!Achievements.exists(name)) continue;
-
-			var unlock:Bool = false;
-			if (name != WeekData.getWeekFileName() + '_nomiss') // common achievements
-			{
-				switch(name)
-				{
-					case 'ur_bad':
-						unlock = (ratingPercent < 0.2 && !practiceMode);
-
-					case 'ur_good':
-						unlock = (ratingPercent >= 1 && !usedPractice);
-
-					case 'oversinging':
-						unlock = (boyfriend.holdTimer >= 10 && !usedPractice);
-
-					case 'hype':
-						unlock = (!boyfriendIdled && !usedPractice);
-
-					case 'two_keys':
-						unlock = (!usedPractice && keysPressed.length <= 2);
-
-					case 'toastie':
-						unlock = (!ClientPrefs.data.shaders && ClientPrefs.data.lowQuality && !ClientPrefs.data.antialiasing);
-
-					case 'debugger':
-						unlock = (songName == 'test' && !usedPractice);
-				}
-			}
-			else // any FC achievements, name should be "weekFileName_nomiss", e.g: "week3_nomiss";
-			{
-				if(isStoryMode && campaignMisses + songMisses < 1 && Difficulty.getString().toUpperCase() == 'HARD'
-					&& storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
-					unlock = true;
-			}
-
-			if(unlock) Achievements.unlock(name);
-		}
-	}
-	#end
 }
