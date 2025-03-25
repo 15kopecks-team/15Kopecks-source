@@ -8,7 +8,6 @@ import flixel.addons.transition.FlxTransitionableState;
 
 import flixel.util.FlxStringUtil;
 
-import states.StoryMenuState;
 import states.songSelect.KopeckSongSelect;
 import options.OptionsState;
 
@@ -292,10 +291,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.seenCutscene = false;
 
 					Mods.loadTopMod();
-					if(PlayState.isStoryMode)
-						MusicBeatState.switchState(new StoryMenuState());
-					else 
-						MusicBeatState.switchState(new KopeckSongSelect());
+					MusicBeatState.switchState(new KopeckSongSelect());
 
 					FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
 					PlayState.changedDifficulty = false;

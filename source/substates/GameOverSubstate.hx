@@ -6,7 +6,6 @@ import objects.Character;
 import flixel.FlxObject;
 import flixel.FlxSubState;
 
-import states.StoryMenuState;
 import states.songSelect.KopeckSongSelect;
 
 class GameOverSubstate extends MusicBeatSubstate
@@ -103,11 +102,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			PlayState.seenCutscene = false;
 			PlayState.chartingMode = false;
 
-			Mods.loadTopMod();
-			if (PlayState.isStoryMode)
-				MusicBeatState.switchState(new StoryMenuState());
-			else
-				MusicBeatState.switchState(new KopeckSongSelect());
+			MusicBeatState.switchState(new KopeckSongSelect());
 
 			FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));
 			PlayState.instance.callOnScripts('onGameOverConfirm', [false]);

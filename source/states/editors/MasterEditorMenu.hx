@@ -5,7 +5,6 @@ import backend.WeekData;
 import objects.Character;
 
 import states.KopeckMenu;
-import states.FreeplayState;
 
 class MasterEditorMenu extends MusicBeatState
 {
@@ -14,9 +13,6 @@ class MasterEditorMenu extends MusicBeatState
 		'Character Editor',
 		'Icon Editor',
 		'Week Editor',
-		'Menu Character Editor',
-		'Dialogue Editor',
-		'Dialogue Portrait Editor',
 		'Note Splash Debug'
 	];
 	private var grpTexts:FlxTypedGroup<Alphabet>;
@@ -114,19 +110,10 @@ class MasterEditorMenu extends MusicBeatState
 					LoadingState.loadAndSwitchState(new ChartingState(), false);
 				case 'Character Editor':
 					LoadingState.loadAndSwitchState(new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
-				case 'Week Editor':
-					MusicBeatState.switchState(new WeekEditorState());
-				case 'Menu Character Editor':
-					MusicBeatState.switchState(new MenuCharacterEditorState());
-				case 'Dialogue Editor':
-					LoadingState.loadAndSwitchState(new DialogueEditorState(), false);
-				case 'Dialogue Portrait Editor':
-					LoadingState.loadAndSwitchState(new DialogueCharacterEditorState(), false);
 				case 'Note Splash Debug':
 					MusicBeatState.switchState(new NoteSplashDebugState());
 			}
 			FlxG.sound.music.volume = 0;
-			FreeplayState.destroyFreeplayVocals();
 		}
 		
 		var bullShit:Int = 0;

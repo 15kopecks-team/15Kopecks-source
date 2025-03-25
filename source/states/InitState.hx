@@ -2,7 +2,6 @@ package states;
 
 import backend.cppApi.CppApi;
 import backend.Highscore;
-import states.TitleState;
 
 import flixel.input.keyboard.FlxKey;
 
