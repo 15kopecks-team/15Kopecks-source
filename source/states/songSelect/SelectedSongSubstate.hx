@@ -141,6 +141,7 @@ class SelectedSongSubstate extends MusicBeatSubstate
             FlxG.sound.play(Paths.sound('cancelMenu'));
             return;
         }
+        FlxG.sound.music.destroy();
         LoadingState.loadAndSwitchState(new PlayState());
     }
 }
