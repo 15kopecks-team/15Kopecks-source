@@ -52,10 +52,13 @@ class OptionsState extends MusicBeatState
 
 		for (i in 0...options.length)
 		{
+			#if mobile
+			// Even a keyboard counts as a gamepad on mobile.
 			if (FlxG.gamepads.numActiveGamepads == 0 && options[i] == "Controls") 
 			{
 				options.remove("Controls");
 			}
+			#end
 
 			var optionText:Alphabet = new Alphabet(0, 0, options[i], true);
 			optionText.screenCenter();
