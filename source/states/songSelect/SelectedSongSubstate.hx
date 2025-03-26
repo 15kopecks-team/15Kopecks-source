@@ -102,7 +102,7 @@ class SelectedSongSubstate extends MusicBeatSubstate
             });
         }
 
-        if (controls.BACK) 
+        if (controls.BACK #if android || FlxG.android.justReleased.BACK #end) 
         {
             busy = true;
 

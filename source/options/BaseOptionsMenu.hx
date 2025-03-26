@@ -130,16 +130,16 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			return;
 		}
 
-		if (controls.UI_UP_P)
+		if (controls.UI_UP_P #if mobile || SwipeUtil.swipeUp #end)
 		{
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P)
+		if (controls.UI_DOWN_P #if mobile || SwipeUtil.swipeDown #end)
 		{
 			changeSelection(1);
 		}
 
-		if (controls.BACK) {
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end) {
 			close();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
@@ -148,7 +148,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		{
 			if(curOption.type == 'bool')
 			{
-				if(controls.ACCEPT)
+				if(controls.ACCEPT #if mobile || (TouchUtil.justPressed && TouchUtil.touch.x < FlxG.width * 0.5) #end)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					curOption.setValue((curOption.getValue() == true) ? false : true);
@@ -183,7 +183,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 						FlxG.sound.play(Paths.sound('scrollMenu'));
 					}
 				}
-				else if(controls.UI_LEFT || controls.UI_RIGHT)
+				else if(controls.UI_LEFT || controls.UI_RIGHT #if mobile || SwipeUtil.swipeRight || SwipeUtil.swipeLeft #end)
 				{
 					var pressed = (controls.UI_LEFT_P || controls.UI_RIGHT_P);
 					if(holdTime > 0.5 || pressed)
@@ -192,7 +192,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 						{
 							var add:Dynamic = null;
 							if(curOption.type != 'string')
-								add = controls.UI_LEFT ? -curOption.changeValue : curOption.changeValue;
+								add = (controls.UI_LEFT #if mobile || SwipeUtil.swipeLeft #end) ? -curOption.changeValue : curOption.changeValue;
 
 							switch(curOption.type)
 							{
@@ -214,7 +214,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 								case 'string':
 									var num:Int = curOption.curOption; //lol
-									if(controls.UI_LEFT_P) --num;
+									if(controls.UI_LEFT_P #if mobile || SwipeUtil.swipeLeft #end) --num;
 									else num++;
 
 									if(num < 0)
@@ -252,7 +252,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 					if(curOption.type != 'string')
 						holdTime += elapsed;
 				}
-				else if(controls.UI_LEFT_R || controls.UI_RIGHT_R)
+				else if(controls.UI_LEFT_R || controls.UI_RIGHT_R #if mobile || SwipeUtil.swipeRight || SwipeUtil.swipeLeft #end)
 				{
 					if(holdTime > 0.5) FlxG.sound.play(Paths.sound('scrollMenu'));
 					holdTime = 0;

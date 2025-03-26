@@ -52,6 +52,11 @@ class OptionsState extends MusicBeatState
 
 		for (i in 0...options.length)
 		{
+			if (FlxG.gamepads.numActiveGamepads == 0 && options[i] == "Controls") 
+			{
+				options.remove("Controls");
+			}
+
 			var optionText:Alphabet = new Alphabet(0, 0, options[i], true);
 			optionText.screenCenter();
 			optionText.y += (100 * (i - (options.length / 2))) + 50;
@@ -77,14 +82,14 @@ class OptionsState extends MusicBeatState
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
-		if (controls.UI_UP_P) {
+		if (controls.UI_UP_P #if mobile || SwipeUtil.swipeUp #end) {
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P) {
+		if (controls.UI_DOWN_P #if mobile || SwipeUtil.swipeDown #end) {
 			changeSelection(1);
 		}
 
-		if (controls.BACK) {
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			if(onPlayState)
 			{
@@ -94,7 +99,7 @@ class OptionsState extends MusicBeatState
 			}
 			else MusicBeatState.switchState(new KopeckMenu());
 		}
-		else if (controls.ACCEPT) openSelectedSubstate(options[curSelected]);
+		else if (controls.ACCEPT #if mobile || (TouchUtil.justPressed && TouchUtil.overlaps(grpOptions)) #end) openSelectedSubstate(options[curSelected]);
 	}
 	
 	function changeSelection(change:Int = 0) {

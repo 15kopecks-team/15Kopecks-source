@@ -177,7 +177,9 @@ class NoteSplashDebugState extends MusicBeatState
 		loadFrames();
 		changeSelection();
 		super.create();
-		FlxG.mouse.visible = true;
+		#if !mobile
+        FlxG.mouse.visible = true;
+        #end
 	}
 
 	var curAnim:Int = 1;
@@ -189,7 +191,7 @@ class NoteSplashDebugState extends MusicBeatState
 		cast(stepperMinFps.text_field, FlxInputText).hasFocus = cast(stepperMaxFps.text_field, FlxInputText).hasFocus = false;
 
 		var notTyping:Bool = !nameInputText.hasFocus && !imageInputText.hasFocus;
-		if(controls.BACK && notTyping)
+		if((controls.BACK #if android || FlxG.android.justReleased.BACK #end) && notTyping)
 		{
 			MusicBeatState.switchState(new MasterEditorMenu());
 			FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic));

@@ -150,18 +150,18 @@ class PauseSubState extends MusicBeatSubstate
 
 		super.update(elapsed);
 
-		if(controls.BACK)
+		if(controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 		{
 			close();
 			return;
 		}
 
 		updateSkipTextStuff();
-		if (controls.UI_UP_P)
+		if (controls.UI_UP_P #if mobile || SwipeUtil.swipeUp #end)
 		{
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P)
+		if (controls.UI_DOWN_P #if mobile || SwipeUtil.swipeDown #end)
 		{
 			changeSelection(1);
 		}
@@ -170,25 +170,25 @@ class PauseSubState extends MusicBeatSubstate
 		switch (daSelected)
 		{
 			case 'Skip Time':
-				if (controls.UI_LEFT_P)
+				if (controls.UI_LEFT_P #if mobile || SwipeUtil.swipeLeft #end)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 					curTime -= 1000;
 					holdTime = 0;
 				}
-				if (controls.UI_RIGHT_P)
+				if (controls.UI_RIGHT_P #if mobile || SwipeUtil.swipeRight #end)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 					curTime += 1000;
 					holdTime = 0;
 				}
 
-				if(controls.UI_LEFT || controls.UI_RIGHT)
+				if(controls.UI_LEFT || controls.UI_RIGHT #if mobile || SwipeUtil.swipeLeft || SwipeUtil.swipeRight #end)
 				{
 					holdTime += elapsed;
 					if(holdTime > 0.5)
 					{
-						curTime += 45000 * elapsed * (controls.UI_LEFT ? -1 : 1);
+						curTime += 45000 * elapsed * ((controls.UI_LEFT_P #if mobile || SwipeUtil.swipeLeft #end) ? -1 : 1);
 					}
 
 					if(curTime >= FlxG.sound.music.length) curTime -= FlxG.sound.music.length;
@@ -197,7 +197,7 @@ class PauseSubState extends MusicBeatSubstate
 				}
 		}
 
-		if (controls.ACCEPT && (cantUnpause <= 0 || !controls.controllerMode))
+		if ((controls.ACCEPT  #if mobile || (TouchUtil.justPressed && TouchUtil.touch.x < FlxG.width * 0.5) #end) && (cantUnpause <= 0 || !controls.controllerMode))
 		{
 			if (menuItems == difficultyChoices)
 			{

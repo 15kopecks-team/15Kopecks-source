@@ -45,30 +45,5 @@ class StorageUtil
 			else
 				trace('$fileName couldn\'t be saved. (${e.message})');
 	}
-
-	#if android
-	public static function requestPermissions():Void
-	{
-		if (AndroidVersion.SDK_INT >= AndroidVersionCode.TIRAMISU)
-    {
-		AndroidPermissions.requestPermissions(['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_MEDIA_AUDIO']);
-    }
-		else
-    {
-		AndroidPermissions.requestPermissions(['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE']);
-    }
-
-		try
-		{
-			if (!FileSystem.exists(StorageUtil.getStorageDirectory()))
-				FileSystem.createDirectory(StorageUtil.getStorageDirectory());
-		}
-		catch (e:Dynamic)
-		{
-			CoolUtil.showPopUp('Please create directory to\n' + StorageUtil.getStorageDirectory(true) + '\nPress OK to close the game', 'Error!');
-			LimeSystem.exit(1);
-		}
-	}
-	#end
 	#end
 }

@@ -22,14 +22,16 @@ class KopeckMenu extends MusicBeatState
 {
     static var justStarted:Bool = true;
 
-    final buttonNames:Array<String> = ["Credits", "Play", "Settings"];
-    final buttonPositions:Array<Array<Float>> = [[FlxG.width * 0.6, FlxG.height * 0.5], [FlxG.width * 0.325, FlxG.height * 0.075], [FlxG.width * 0.1, FlxG.height * 0.4]];
-    final buttonTargetStates:Array<FlxState> = [null, new KopeckSongSelect(), new OptionsState()];
+    final buttonNames:Array<String> = [#if !mobile "Credits", #end "Play", "Settings"];
+    final buttonPositions:Array<Array<Float>> = [#if !mobile [FlxG.width * 0.6, FlxG.height * 0.5], #end [FlxG.width * 0.325, FlxG.height * 0.075], [FlxG.width * 0.1, FlxG.height * 0.4]];
+    final buttonTargetStates:Array<FlxState> = [#if !mobile null, #end new KopeckSongSelect(), new OptionsState()];
 
     private var buttons:FlxTypedGroup<KopeckMenuItem>;
 
     override function create() {
+        #if !mobile
         FlxG.mouse.visible = true;
+        #end
 
         if(FlxG.sound.music == null) {
             FlxG.sound.playMusic(Paths.music(states.InitState.menuMusic), 0);

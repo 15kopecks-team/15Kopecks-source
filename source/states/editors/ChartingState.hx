@@ -261,12 +261,9 @@ class ChartingState extends MusicBeatState
 		nextRenderedSustains = new FlxTypedGroup<FlxSprite>();
 		nextRenderedNotes = new FlxTypedGroup<Note>();
 
-		FlxG.mouse.visible = true;
-		//FlxG.save.bind('funkin', CoolUtil.getSavePath());
-
-		//addSection();
-
-		// sections = _song.notes;
+		#if !mobile
+        FlxG.mouse.visible = true;
+        #end
 
 		updateJsonData();
 		currentSongName = Paths.formatToSongPath(_song.song);
@@ -1718,7 +1715,10 @@ class ChartingState extends MusicBeatState
 			strumLineNotes.members[i].y = strumLine.y;
 		}
 
-		FlxG.mouse.visible = true;//cause reasons. trust me
+		#if !mobile
+        FlxG.mouse.visible = true;
+        #end
+
 		camPos.y = strumLine.y;
 		if(!disableAutoScrolling.checked) {
 			if (Math.ceil(strumLine.y) >= gridBG.height)

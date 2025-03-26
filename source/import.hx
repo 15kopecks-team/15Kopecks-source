@@ -68,5 +68,17 @@ import android.os.Build.VERSION_CODES as AndroidVersionCode;
 import android.os.BatteryManager as AndroidBatteryManager;
 #end
 
+#if mobile
+import mobile.backend.TouchUtil;
+import mobile.backend.SwipeUtil;
+
+// Mobile Controls
+import mobile.objects.IMobileControls;
+import mobile.objects.Hitbox;
+import mobile.objects.TouchButton;
+import mobile.input.MobileInputID;
+import mobile.input.MobileInputManager;
+#end
+
 using StringTools;
 #end

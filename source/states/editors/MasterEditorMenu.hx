@@ -98,7 +98,7 @@ class MasterEditorMenu extends MusicBeatState
 		}
 		#end
 
-		if (controls.BACK)
+		if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 		{
 			MusicBeatState.switchState(new KopeckMenu());
 		}

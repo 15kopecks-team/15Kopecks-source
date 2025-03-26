@@ -307,7 +307,7 @@ class ModsMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if(controls.BACK && hoveringOnMods)
+		if((controls.BACK #if android || FlxG.android.justReleased.BACK #end) && hoveringOnMods)
 		{
 			if(colorTween != null) {
 				colorTween.cancel();
@@ -472,7 +472,7 @@ class ModsMenuState extends MusicBeatState
 				}
 				else 
 				{
-					if(controls.BACK)
+					if(controls.BACK #if android || FlxG.android.justReleased.BACK #end)
 					{
 						hoveringOnMods = true;
 						var button = getButton();

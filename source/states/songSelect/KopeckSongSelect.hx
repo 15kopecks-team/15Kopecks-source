@@ -49,7 +49,9 @@ class KopeckSongSelect extends MusicBeatState
 
 	override function create()
 	{
+        #if !mobile
         FlxG.mouse.visible = true;
+        #end
 
         #if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
@@ -65,11 +67,6 @@ class KopeckSongSelect extends MusicBeatState
 		bgStairs.screenCenter();
 		bgStairs.antialiasing = ClientPrefs.data.antialiasing;
 		add(bgStairs);
-
-		items = new FlxSprite(Paths.image("menus/fr/items"));
-		items.setPosition(bg.x, bg.y);
-		items.antialiasing = ClientPrefs.data.antialiasing;
-		add(items);
 
         objects = new FlxTypedGroup<KopeckSongObject>();
         for (i in 0...objectData.length)
@@ -112,7 +109,7 @@ class KopeckSongSelect extends MusicBeatState
         cameraFollow.x = (FlxG.width / 2.5 + FlxG.mouse.gameX / (bg.width / FlxG.width * 2)) * FlxG.camera.zoom;
 		cameraFollow.y = (FlxG.height / 2.5 + FlxG.mouse.gameY / (bg.height / FlxG.height * 2)) * FlxG.camera.zoom;
 
-        if (controls.BACK)
+        if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
         {
             FlxG.sound.play(Paths.sound('cancelMenu'), 0.7);
             FlxG.switchState(new KopeckMenu());

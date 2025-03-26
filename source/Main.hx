@@ -34,9 +34,6 @@ import haxe.io.Path;
 
 #if mobile
 import mobile.backend.StorageUtil;
-#end
-
-#if COPYSTATE_ALLOWED
 import mobile.states.CopyState;
 #end
 
@@ -61,8 +58,8 @@ class Main extends Sprite
 	var game = {
 		width: 1280, // WINDOW width
 		height: 720, // WINDOW height
-		initialState: #if COPYSTATE_ALLOWED CopyState #else TitleState #end, // initial game state
-		zoom: -1.0, // game state bounds
+		initialState: #if mobile CopyState #else InitState #end, // initial game state
+		zoom: #if mobile 1.0 #else -1.0 #end, // game state bounds
 		framerate: 60, // default framerate
 		skipSplash: true, // if the default flixel splash screen should be skipped
 		startFullscreen: false // if the game should start at fullscreen mode
@@ -105,9 +102,6 @@ class Main extends Sprite
 		super();
 
 		#if mobile
-		#if android
-		StorageUtil.requestPermissions();
-		#end
 		Sys.setCwd(StorageUtil.getStorageDirectory());
 		#end
 
@@ -152,7 +146,6 @@ class Main extends Sprite
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
-		#if !mobile
 		fpsVar = new FPS(10, 8, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
@@ -160,7 +153,6 @@ class Main extends Sprite
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.data.showFPS;
 		}
-		#end
 
 		#if linux
 		var icon = Image.fromFile("icon.png");
@@ -170,7 +162,9 @@ class Main extends Sprite
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
-		#end
+		#elseif mobile
+        FlxG.mouse.visible = false;
+        #end
 		
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);

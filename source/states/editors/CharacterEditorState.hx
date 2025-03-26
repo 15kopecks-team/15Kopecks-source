@@ -144,7 +144,9 @@ class CharacterEditorState extends MusicBeatState
 		add(frameAdvanceText);
 
 		addHelpScreen();
-		FlxG.mouse.visible = true;
+		#if !mobile
+        FlxG.mouse.visible = true;
+        #end
 		FlxG.camera.zoom = 1;
 
 		makeUIMenu();

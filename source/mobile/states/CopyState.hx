@@ -1,7 +1,7 @@
 package mobile.states;
 
-#if COPYSTATE_ALLOWED
-import states.KopeckMenu;
+#if mobile
+import states.InitState;
 import lime.utils.Assets as LimeAssets;
 import openfl.utils.Assets as OpenFLAssets;
 import flixel.addons.util.FlxAsyncLoop;
@@ -22,8 +22,6 @@ class CopyState extends MusicBeatState
 	public static var locatedFiles:Array<String> = [];
 	public static var maxLoopTimes:Int = 0;
 
-	public var loadingImage:FlxSprite;
-	public var loadingBar:FlxBar;
 	public var loadedText:FlxText;
 	public var copyLoop:FlxAsyncLoop;
 
@@ -40,26 +38,16 @@ class CopyState extends MusicBeatState
 		checkExistingFiles();
 		if (maxLoopTimes <= 0)
 		{
-			MusicBeatState.switchState(new KopeckMenu());
+			MusicBeatState.switchState(new InitState());
 			return;
 		}
 
 		shouldCopy = true;
 
-		add(new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d));
-
-		loadingImage = new FlxSprite(Paths.image("startScreen"));
-		loadingImage.antialiasing = ClientPrefs.data.antialiasing;
-		loadingImage.setGraphicSize(FlxG.width);
-		loadingImage.updateHitbox();
-		add(loadingImage);
-
-		loadingBar = new FlxBar(0, FlxG.height - 26, FlxBarFillDirection.LEFT_TO_RIGHT, FlxG.width, 26);
-		loadingBar.setRange(0, maxLoopTimes);
-		add(loadingBar);
-
-		loadedText = new FlxText(loadingBar.x, loadingBar.y + 4, FlxG.width, '', 16);
+		loadedText = new FlxText(0, 0, FlxG.width, '', 16);
 		loadedText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER);
+		loadedText.screenCenter();
+		loadedText.scrollFactor.set();
 		add(loadedText);
 
 		var ticks:Int = 15;
@@ -77,7 +65,6 @@ class CopyState extends MusicBeatState
 	{
 		if (shouldCopy && copyLoop != null)
 		{
-			loadingBar.percent = loopTimes / maxLoopTimes * 100;
 			if (copyLoop.finished && canUpdate)
 			{
 				if (failedFiles.length > 0)
@@ -88,16 +75,14 @@ class CopyState extends MusicBeatState
 					File.saveContent('logs/' + Date.now().toString().replace(' ', '-').replace(':', "'") + '-CopyState' + '.txt', failedFilesStack.join('\n'));
 				}
 				canUpdate = false;
-				FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = () ->
-				{
-					MusicBeatState.switchState(new KopeckMenu());
-				};
+				
+				MusicBeatState.switchState(new InitState());
 			}
 
 			if (loopTimes == maxLoopTimes)
 				loadedText.text = "Completed!";
 			else
-				loadedText.text = '$loopTimes/$maxLoopTimes';
+				loadedText.text = 'Loading... $loopTimes/$maxLoopTimes';
 		}
 		super.update(elapsed);
 	}
@@ -106,7 +91,7 @@ class CopyState extends MusicBeatState
 	{
 		var file = locatedFiles[loopTimes];
 		loopTimes++;
-		if (!FileSystem.exists(file) && !file.contains('embed'))
+		if (!FileSystem.exists(file) && !file.contains('embed') && !file.contains('15Koppek'))
 		{
 			var directory = Path.directory(file);
 			if (!FileSystem.exists(directory))
@@ -186,7 +171,7 @@ class CopyState extends MusicBeatState
 
 		// removes unwanted assets
 		var assets = locatedFiles.filter(folder -> folder.startsWith('assets/'));
-		var mods = locatedFiles.filter(folder -> folder.startsWith('mods/'));
+		var mods = locatedFiles.filter(folder -> folder.startsWith('content/'));
 		locatedFiles = assets.concat(mods);
 		locatedFiles = locatedFiles.filter(file -> !FileSystem.exists(file));
 

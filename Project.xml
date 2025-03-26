@@ -3,14 +3,16 @@
 	<!-- _________________________ Application Settings _________________________ -->
 
 	<app
-		title="Friday Night Funkin': kopecks"
-		file="kopecks"
-		packageName="com.dUmer.kopecks"
-		package="com.dUmer.kopecks"
+		title="Friday Night Funkin': 15kopecks"
+		file="15kopecks"
+		packageName="com.dUmer.15kopecks"
+		package="com.dUmer.15kopecks"
 		main="Main"
-		version="0.2.8"
+		version="1.1.0"
 		company="dUmer"
 	/>
+
+	<app if="mobile" title="15kopecks" packageName="com.dUmer.kopecks" package="com.dUmer.kopecks" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -28,9 +30,9 @@
 	
 	<!-- ______________________ PSYCH ENGINE CUSTOMIZATION ______________________ -->
 
-	<define name="MODS_ALLOWED" if="desktop || android" />
-	<define name="HSCRIPT_ALLOWED" if="desktop || android" />
-	<define name="LUA_ALLOWED" if="desktop || android" />
+	<define name="MODS_ALLOWED" if="desktop || mobile" />
+	<define name="HSCRIPT_ALLOWED" if="desktop" />
+	<define name="LUA_ALLOWED" if="desktop || mobile" />
 	<define name="DISCORD_ALLOWED" if="desktop" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
@@ -45,10 +47,7 @@
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
-
-	<!--Switch-specific-->
-	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
+	<window if="mobile" orientation="landscape" resizable="false"/>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -65,7 +64,6 @@
 
 	<!-- Assets -->
 	<assets path="assets/fonts" />
-	<!-- <assets path="assets/flixel-ui"/> -->
 	<assets path="assets/shared"        exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"        exclude="*.mp3" unless="web"/>
 	<assets path="assets/videos"        library="videos"        if="VIDEOS_ALLOWED"/>
@@ -94,6 +92,9 @@
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
 
+	<!--Mobile stuff needed-->
+	<haxelib name="extension-androidtools" if="mobile" />
+
 	<!-- Disable Discord IO Thread -->
 	<haxedef name="DISCORD_DISABLE_IO_THREAD" if="hxdiscord_rpc" />
 	<haxedef name="NO_PRECOMPILED_HEADERS" if="linux" />
@@ -107,9 +108,6 @@
 	<!--Disable the Flixel core focus lost screen-->
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	
-	<!-- Show debug traces for hxCodec -->
-	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
-	
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 
@@ -121,9 +119,6 @@
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_TRACE" if="CRASH_HANDLER" />
 
-	<!--Prevent compile error on mobile-->
-	<haxedef name="DISABLE_MACRO_SUPERLATIVE" if="mobile" />
-	
 	<!--Disable deprecated warnings-->
 	<haxedef name='no-deprecation-warnings' />
 

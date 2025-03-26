@@ -272,7 +272,9 @@ class EditorPlayState extends MusicBeatSubstate
 	{
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-		FlxG.mouse.visible = true;
+		#if !mobile
+        FlxG.mouse.visible = true;
+        #end
 		super.destroy();
 	}
 	

@@ -122,7 +122,10 @@ class Paths
 			}
 		}
 
-		return getSharedPath(file);
+		if (FileSystem.exists(getKopeckPath(file)))
+			return getKopeckPath(file);
+		else
+			return getSharedPath(file);
 	}
 
 	static public function getLibraryPath(file:String, library = "shared")
@@ -254,6 +257,7 @@ class Paths
 		#end
 		{
 			file = getPath('images/$key.png', IMAGE, library);
+			trace(file);
 
 			if (currentTrackedAssets.exists(file))
 			{
@@ -512,7 +516,7 @@ class Paths
 	}
 
 	inline static public function modsSounds(path:String, key:String) {
-		return modFolders(path + '/' + key + '.' + SOUND_EXT);
+		return modFolders(path + key + '.' + SOUND_EXT);
 	}
 
 	inline static public function modsImages(key:String) {
@@ -535,6 +539,7 @@ class Paths
 		if(Mods.currentModDirectory != null && Mods.currentModDirectory.length > 0) {
 			var fileToCheck:String = mods(Mods.currentModDirectory + '/' + key);
 			if(FileSystem.exists(fileToCheck)) {
+				trace(fileToCheck);
 				return fileToCheck;
 			}
 		}
@@ -542,8 +547,10 @@ class Paths
 		for(mod in Mods.getGlobalMods()){
 			var fileToCheck:String = mods(mod + '/' + key);
 			if(FileSystem.exists(fileToCheck))
+				trace(fileToCheck);
 				return fileToCheck;
 		}
+		trace('content/' + key);
 		return 'content/' + key;
 	}
 	#end

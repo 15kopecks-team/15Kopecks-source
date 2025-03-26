@@ -20,6 +20,10 @@ class InitState extends MusicBeatState
     var shader:Dynamic;
 
     override function create() {
+        #if android
+        FlxG.android.preventDefaultKeys = [BACK];
+        #end
+
         #if !mobile
         CppAPI.darkMode();
         #end
@@ -35,12 +39,12 @@ class InitState extends MusicBeatState
 
         Highscore.load();
 
-        MusicBeatState.switchState(new KopeckMenu());
-
         super.create();
 
         initLuaShader("mobile");
         shader = createRuntimeShader("mobile");
         FlxG.game.setFilters([new ShaderFilter(shader)]);
+        
+        MusicBeatState.switchState(new KopeckMenu());
     }
 }
