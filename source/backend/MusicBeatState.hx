@@ -2,6 +2,7 @@ package backend;
 
 import flixel.addons.ui.FlxUIState;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.util.FlxDestroyUtil;
 import flixel.FlxState;
 
 #if !flash
@@ -23,6 +24,51 @@ class MusicBeatState extends FlxUIState
 	private function get_controls()
 	{
 		return Controls.instance;
+	}
+
+	public var mobileControls:IMobileControls;
+	public var camControls:FlxCamera;
+	public static function setButtonsColors(buttonsInstance:Dynamic):Dynamic
+	{
+		// Dynamic Controls Color
+		var data:Dynamic;
+		data = ClientPrefs.data;
+
+		buttonsInstance.buttonLeft.color = data.arrowRGB[0][0];
+		buttonsInstance.buttonDown.color = data.arrowRGB[1][0];
+		buttonsInstance.buttonUp.color = data.arrowRGB[2][0];
+		buttonsInstance.buttonRight.color = data.arrowRGB[3][0];
+		return buttonsInstance;
+	}
+
+	public function addMobileControls(defaultDrawTarget:Bool = false):Void
+	{
+		mobileControls = new Hitbox();
+		mobileControls.instance = setButtonsColors(mobileControls.instance);
+
+		camControls = new FlxCamera();
+		camControls.bgColor.alpha = 0;
+		FlxG.cameras.add(camControls, defaultDrawTarget);
+
+		mobileControls.instance.cameras = [camControls];
+		mobileControls.instance.visible = false;
+		add(mobileControls.instance);
+	}
+
+	public function removeMobileControls()
+	{
+		if (mobileControls != null)
+		{
+			remove(mobileControls.instance);
+			mobileControls.instance = FlxDestroyUtil.destroy(mobileControls.instance);
+			mobileControls = null;
+		}
+
+		if(camControls != null)
+		{
+			FlxG.cameras.remove(camControls);
+			camControls = FlxDestroyUtil.destroy(camControls);
+		}
 	}
 
 	override function create() {

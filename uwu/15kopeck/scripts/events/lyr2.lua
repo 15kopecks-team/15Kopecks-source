@@ -2,7 +2,7 @@
 function onCreatePost()
     --Создание и настройка текста
         makeLuaText("big1", '', 0, 0, 0)
-        setTextFont("big1", "akiraExpanded-SuperBold.otf")
+        setTextFont("big1", "AkiraExpanded-SuperBold.otf")
         setObjectCamera("big1", 'game')
         setTextColor("big1", "FFFFFF")
         setTextBorder("big1", 5, "000000")

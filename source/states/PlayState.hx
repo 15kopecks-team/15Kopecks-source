@@ -639,6 +639,11 @@ class PlayState extends MusicBeatState
 
 		cacheCountdown();
 
+		#if mobile
+		addMobileControls();
+		mobileControls.instance.visible = true;
+		#end
+
 		super.create();
 		Paths.clearUnusedMemory();
 
@@ -1617,7 +1622,7 @@ class PlayState extends MusicBeatState
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if ((controls.PAUSE #if mobile || FlxG.android.justReleased.BACK #end) && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnScripts('onPause', null, true);
 			if(ret != LuaUtils.Function_Stop) {
@@ -2257,6 +2262,10 @@ class PlayState extends MusicBeatState
 	public var transitioning = false;
 	public function endSong()
 	{
+		#if mobile
+		mobileControls.instance.visible = false;
+		#end
+
 		//Should kill you if you tried to cheat
 		if(!startingSong) {
 			notes.forEach(function(daNote:Note) {

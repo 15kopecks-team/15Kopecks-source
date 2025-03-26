@@ -21,8 +21,6 @@ class Hitbox extends MobileInputManager implements IMobileControls
 	public var buttonDown:TouchButton = new TouchButton(0, 0, [MobileInputID.HITBOX_DOWN, MobileInputID.NOTE_DOWN]);
 	public var buttonUp:TouchButton = new TouchButton(0, 0, [MobileInputID.HITBOX_UP, MobileInputID.NOTE_UP]);
 	public var buttonRight:TouchButton = new TouchButton(0, 0, [MobileInputID.HITBOX_RIGHT, MobileInputID.NOTE_RIGHT]);
-	public var buttonExtra:TouchButton = new TouchButton(0, 0);
-	public var buttonExtra2:TouchButton = new TouchButton(0, 0);
 
 	public var instance:MobileInputManager;
 
@@ -82,28 +80,14 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		hint.statusIndicatorType = NONE;
 		hint.loadGraphic(createHintGraphic(Width, Height));
 
-		hint.label = new FlxSprite();
-		hint.labelStatusDiff = 1;
-		hint.label.loadGraphic(createHintGraphic(Width, Math.floor(Height * 0.035), true));
-		hint.label.offset.y += (hint.height - hint.label.height) / 2;
-
 		var hintTween:FlxTween = null;
-		var hintLaneTween:FlxTween = null;
 
 		hint.onDown.callback = function()
 		{
 			if (hintTween != null)
 				hintTween.cancel();
 
-			if (hintLaneTween != null)
-				hintLaneTween.cancel();
-
 			hintTween = FlxTween.tween(hint, {alpha: 0.3}, 1 / 100, {
-				ease: FlxEase.circInOut,
-				onComplete: (twn:FlxTween) -> hintTween = null
-			});
-
-			hintLaneTween = FlxTween.tween(hint.label, {alpha: 0.00001}, 1 / 10, {
 				ease: FlxEase.circInOut,
 				onComplete: (twn:FlxTween) -> hintTween = null
 			});
@@ -114,15 +98,7 @@ class Hitbox extends MobileInputManager implements IMobileControls
 			if (hintTween != null)
 				hintTween.cancel();
 
-			if (hintLaneTween != null)
-				hintLaneTween.cancel();
-
 			hintTween = FlxTween.tween(hint, {alpha: 0.00001}, 1 / 10, {
-				ease: FlxEase.circInOut,
-				onComplete: (twn:FlxTween) -> hintTween = null
-			});
-
-			hintLaneTween = FlxTween.tween(hint.label, {alpha: 0.3}, 1 / 100, {
 				ease: FlxEase.circInOut,
 				onComplete: (twn:FlxTween) -> hintTween = null
 			});
@@ -131,9 +107,7 @@ class Hitbox extends MobileInputManager implements IMobileControls
 		hint.immovable = hint.multiTouch = true;
 		hint.solid = hint.moves = false;
 		hint.alpha = 0.00001;
-		hint.label.alpha = 1;
-		hint.canChangeLabelAlpha = false;
-		hint.label.antialiasing = hint.antialiasing = ClientPrefs.data.antialiasing;
+		hint.antialiasing = ClientPrefs.data.antialiasing;
 		hint.color = Color;
 		#if FLX_DEBUG
 		hint.ignoreDrawDebug = true;
