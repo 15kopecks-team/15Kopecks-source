@@ -185,7 +185,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 				else if(controls.UI_LEFT || controls.UI_RIGHT #if mobile || SwipeUtil.swipeRight || SwipeUtil.swipeLeft #end)
 				{
-					var pressed = (controls.UI_LEFT_P || controls.UI_RIGHT_P);
+					var pressed = (controls.UI_LEFT_P || controls.UI_RIGHT_P #if mobile || SwipeUtil.swipeRight || SwipeUtil.swipeLeft #end);
 					if(holdTime > 0.5 || pressed)
 					{
 						if(pressed)
@@ -232,7 +232,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 						}
 						else if(curOption.type != 'string')
 						{
-							holdValue += curOption.scrollSpeed * elapsed * (controls.UI_LEFT ? -1 : 1);
+							holdValue += curOption.scrollSpeed * elapsed * ((controls.UI_LEFT #if mobile || SwipeUtil.swipeLeft #end) ? -1 : 1);
 							if(holdValue < curOption.minValue) holdValue = curOption.minValue;
 							else if (holdValue > curOption.maxValue) holdValue = curOption.maxValue;
 
