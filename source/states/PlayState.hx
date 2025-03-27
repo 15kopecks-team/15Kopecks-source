@@ -280,6 +280,8 @@ class PlayState extends MusicBeatState
 	public var timeBar:Bar;
 	public var timeTxt:FlxText;
 
+	public var lyricsTxt:FlxText;
+
 	public var icon1X:Float = 0;
 	public var icon2X:Float = 0;
 
@@ -553,7 +555,6 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - 90;
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		
-
 		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -567,6 +568,15 @@ class PlayState extends MusicBeatState
 		botplayTxt.screenCenter();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
+
+		lyricsTxt = new FlxText(0, 1000, 2000, "", 90);
+		lyricsTxt.setFormat(Paths.font("akiraExpanded-SuperBold.otf"), 90, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		lyricsTxt.cameras = [LuaUtils.cameraFromString('game')];
+		lyricsTxt.scrollFactor.set();
+		lyricsTxt.borderSize = 5;
+		lyricsTxt.screenCenter(X);
+		lyricsTxt.visible = !ClientPrefs.data.hideHud;
+		add(lyricsTxt);
 
 		for(i in [newHealthBar, iconP1, iconP2, scoreTxt, timeBar, timeTxt, botplayTxt])
 			uiGroup.add(i);
