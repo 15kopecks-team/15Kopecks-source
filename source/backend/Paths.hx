@@ -539,7 +539,6 @@ class Paths
 		if(Mods.currentModDirectory != null && Mods.currentModDirectory.length > 0) {
 			var fileToCheck:String = mods(Mods.currentModDirectory + '/' + key);
 			if(FileSystem.exists(fileToCheck)) {
-				trace(fileToCheck);
 				return fileToCheck;
 			}
 		}
@@ -547,10 +546,8 @@ class Paths
 		for(mod in Mods.getGlobalMods()){
 			var fileToCheck:String = mods(mod + '/' + key);
 			if(FileSystem.exists(fileToCheck))
-				trace(fileToCheck);
 				return fileToCheck;
 		}
-		trace('content/' + key);
 		return 'content/' + key;
 	}
 	#end
