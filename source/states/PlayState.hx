@@ -515,7 +515,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 		moveCameraSection();
 
-		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), null, function() return health, 0, 2);
+		healthBar = new Bar(0, FlxG.height * (!ClientPrefs.data.downScroll ? 0.89 : 0.11), "healthBar", function() return health, 0, 2);
 		healthBar.screenCenter(X);
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
@@ -536,7 +536,6 @@ class PlayState extends MusicBeatState
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
         
-
 		if(ClientPrefs.data.downScroll) 
 			timeTxt.y = 661;
 		
@@ -570,7 +569,7 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 
 		lyricsTxt = new FlxText(0, 1000, 2000, "", 90);
-		lyricsTxt.setFormat(Paths.font("akiraExpanded-SuperBold.otf"), 90, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		lyricsTxt.setFormat(Paths.font("AkiraExpanded-SuperBold.otf"), 90, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		lyricsTxt.cameras = [LuaUtils.cameraFromString('game')];
 		lyricsTxt.scrollFactor.set();
 		lyricsTxt.borderSize = 5;

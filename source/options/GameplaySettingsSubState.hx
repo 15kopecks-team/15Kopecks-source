@@ -27,6 +27,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		addOption(option);
 		option.onChange = onChangeAutoPause;
 
+		#if mobile
 		var option:Option = new Option('Hitbox Alpha',
 		"Changes hitbox's alpha on mobile.",
 		'hitboxAlpha',
@@ -35,6 +36,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 1;
 		option.changeValue = 0.1;
 		addOption(option);
+		#end
 
 		var option:Option = new Option('Disable Reset Button',
 			"If checked, pressing Reset won't do anything.",
